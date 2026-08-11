@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Institute of Technology - Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Main Header -->
+    <header class="main-header">
+        <h1>Apex Institute of Technology</h1>
+        <p>Inspiring Innovation and Academic Excellence</p>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="courses.html">Courses</a>
+        <a href="registration.html" class="active">Registration</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        <div class="content-block">
+            <h2>Admission Registration Form</h2>
+            <p>Please fill out this form to submit your enrollment request. Our admissions team will review your application details and contact you via email.</p>
+            
+            <form action="#" method="post">
+                <!-- Student Full Name -->
+                <div class="form-group">
+                    <label for="fullName">Student Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" class="form-control" required>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                    <label for="studentEmail">Email Address</label>
+                    <input type="email" id="studentEmail" name="studentEmail" placeholder="example@email.com" class="form-control" required>
+                </div>
+
+                <!-- Selected Department -->
+                <div class="form-group">
+                    <label for="targetCourse">Preferred Engineering Department</label>
+                    <select id="targetCourse" name="targetCourse" class="form-control" required>
+                        <option value="">-- Choose Course --</option>
+                        <option value="CSE">Computer Science &amp; Engineering</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="ECE">Electronics &amp; Communication</option>
+                        <option value="EEE">Electrical &amp; Electronics</option>
+                        <option value="MECH">Mechanical Engineering</option>
+                    </select>
+                </div>
+
+                <!-- Marks in qualifying exam -->
+                <div class="form-group">
+                    <label for="marks">Qualifying Exam Score (10+2 Percentage)</label>
+                    <input type="number" id="marks" name="marks" min="0" max="100" placeholder="e.g. 85" class="form-control" required>
+                </div>
+
+                <!-- Declaration -->
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label for="agreeTerms">I verify that all entered academic information is correct and true.</label>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-group">
+                    <button type="submit" class="btn-submit">Submit Application</button>
+                    <button type="reset" class="btn-submit" style="background-color: #64748b; margin-left: 10px;">Reset Form</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2026 Apex Institute of Technology. All rights reserved.</p>
+        <p>Affiliated with State Technical University | Approved by AICTE</p>
+    </footer>
+</body>
+
+</html>

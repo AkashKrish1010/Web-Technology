@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Web Explorer Hub - EXP 8</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon">🌐</span> WebExplorer
+        </div>
+        <nav class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#portal">Interactive Portal</a>
+            <a href="https://developer.mozilla.org/" target="_blank" class="ext-btn">MDN Docs &nearr;</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge">Experiment 8</span>
+            <h1>Interactive Web Dashboard</h1>
+            <p>Demonstrating modern integration of responsive images, targeted anchor links, and iframe embeddings with high-end glassmorphic design.</p>
+            <div class="hero-actions">
+                <a href="#gallery" class="btn btn-primary">View Showcase</a>
+                <a href="#portal" class="btn btn-secondary">Open Portal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Section 1: Visual Showcase (Images) -->
+        <section id="gallery" class="showcase-section">
+            <div class="section-header">
+                <h2>Visual Showcase</h2>
+                <div class="header-line"></div>
+                <p>High-resolution image assets styled with HTML attributes and modern CSS wrappers.</p>
+            </div>
+
+            <div class="showcase-grid">
+                <!-- Large Feature Card -->
+                <div class="card feature-card">
+                    <div class="card-img-wrapper">
+                        <!-- image tag using height, width, and alt text -->
+                        <img src="tech_showcase.png" alt="Futuristic digital workspace dashboard with glowing neon accents and holographic charts" width="800" height="450" class="showcase-img">
+                    </div>
+                    <div class="card-body">
+                        <h3>Workspace Asset (Generated)</h3>
+                        <p>This image represents the conceptual workspace design for WebExplorer. Rendered with dark, vibrant blue and purple tones, it aligns with our sleek glassmorphism theme. It utilizes HTML width and height attributes to reserve space and prevent layout shifts (CLS), along with alt text for accessibility.</p>
+                        <div class="card-footer">
+                            <span class="tag">Generated Asset</span>
+                            <a href="tech_showcase.png" target="_blank" class="card-link">View Raw Image &nearr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Info Cards -->
+                <div class="card-side-container">
+                    <div class="card small-card">
+                        <div class="card-body">
+                            <div class="card-icon">⚡</div>
+                            <h3>Optimized Layout</h3>
+                            <p>Using strict width and height attributes in HTML avoids layout reflows during image load, ensuring high-speed performance.</p>
+                            <a href="https://web.dev/cls/" target="_blank" class="card-link-small">Learn CLS &nearr;</a>
+                        </div>
+                    </div>
+                    <div class="card small-card">
+                        <div class="card-body">
+                            <div class="card-icon">🎨</div>
+                            <h3>CSS & HTML Harmony</h3>
+                            <p>HTML attributes define the canvas bounds, while modern responsive CSS handles flex sizing, object fitting, and animations.</p>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="card-link-small">Learn CSS &nearr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive Web Portal (Iframes & Anchors) -->
+        <section id="portal" class="portal-section">
+            <div class="section-header">
+                <h2>Interactive Web Portal</h2>
+                <div class="header-line"></div>
+                <p>Click links on the left to dynamically load external pages and local documents inside the viewport iframe using anchor targets.</p>
+            </div>
+
+            <div class="portal-grid">
+                <!-- Sidebar Control Panel -->
+                <div class="portal-sidebar">
+                    <div class="panel-header">
+                        <h4>Navigation Controls</h4>
+                        <p>Target: <code>portal_frame</code></p>
+                    </div>
+                    <div class="control-links">
+                        <!-- Anchor tags targeting the named iframe -->
+                        <a href="../EXP_4/index.html" target="portal_frame" class="portal-link active" onclick="setActiveLink(this)">
+                            <span class="icon">📝</span>
+                            <span class="text">Local Registration Form</span>
+                        </a>
+                        <a href="https://www.openstreetmap.org/export/embed.html?bbox=-122.423%2C37.773%2C-122.408%2C37.788&layer=mapnik" target="portal_frame" class="portal-link" onclick="setActiveLink(this)">
+                            <span class="icon">🗺️</span>
+                            <span class="text">Interactive Map (OSM)</span>
+                        </a>
+                        <a href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="portal_frame" class="portal-link" onclick="setActiveLink(this)">
+                            <span class="icon">🎥</span>
+                            <span class="text">Educational Video (YouTube)</span>
+                        </a>
+                    </div>
+                    <div class="panel-info">
+                        <p><strong>Note:</strong> Some major external sites block iframing using <code>X-Frame-Options</code> or <code>Content-Security-Policy</code> for security. We use open embed layers above.</p>
+                    </div>
+                </div>
+
+                <!-- Iframe Viewport Container -->
+                <div class="portal-viewport">
+                    <div class="viewport-header">
+                        <div class="dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="url-bar">portal_frame / viewer</div>
+                    </div>
+                    <div class="iframe-wrapper">
+                        <!-- The target Iframe -->
+                        <iframe name="portal_frame" src="../EXP_4/index.html" width="100%" height="500" title="Dynamic Interactive Portal Viewport" class="portal-iframe">
+                            <p>Your browser does not support iframes. Please click one of the navigation control links to view the source directly.</p>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 WebExplorer. Built for Web Technology Lab Experiment 8.</p>
+        <p>Created using HTML5 Image, Anchor, and Iframe specifications.</p>
+    </footer>
+
+    <!-- Interactive Script for UI Polish -->
+    <script>
+        function setActiveLink(element) {
+            // Remove active class from all links
+            const links = document.querySelectorAll('.portal-link');
+            links.forEach(link => link.classList.remove('active'));
+            
+            // Add active class to clicked link
+            element.classList.add('active');
+            
+            // Update the url-bar text
+            const urlBar = document.querySelector('.url-bar');
+            let label = element.querySelector('.text').textContent;
+            urlBar.textContent = "portal_frame / " + label.toLowerCase().replace(/\s+/g, '_');
+        }
+    </script>
+</body>
+
+</html>

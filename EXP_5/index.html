@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EXP 5 - Demonstrating GET and POST Methods using HTML Forms">
+    <title>EXP 5 – GET vs POST Methods</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <p class="exp-label">EXP 5</p>
+        <h1>GET vs POST Methods</h1>
+        <p class="subtitle">Demonstrating how HTML form methods differ in data visibility and URL behaviour</p>
+    </header>
+
+    <main>
+
+        <!-- ── GET FORM ── -->
+        <section class="card get-card">
+            <div class="card-header">
+                <span class="badge badge-get">GET</span>
+                <h2>GET Method</h2>
+            </div>
+
+            <div class="info-box">
+                <p>Form data is <strong>appended to the URL</strong> as query parameters.<br>
+                    Example: <code>?name=John&email=john@mail.com</code></p>
+            </div>
+
+            <form id="get-form" method="GET" action="#">
+                <div class="form-group">
+                    <label for="get-name">Full Name</label>
+                    <input type="text" id="get-name" name="name" placeholder="e.g. John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="get-email">Email</label>
+                    <input type="email" id="get-email" name="email" placeholder="e.g. john@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="get-search">Search Query</label>
+                    <input type="text" id="get-search" name="query" placeholder="e.g. HTML tutorials">
+                </div>
+                <button type="submit" class="btn btn-get">Submit via GET</button>
+            </form>
+
+            <div class="output-panel" id="get-output">
+                <p class="output-placeholder">Submit the form to see the URL output here…</p>
+            </div>
+        </section>
+
+        <!-- ── POST FORM ── -->
+        <section class="card post-card">
+            <div class="card-header">
+                <span class="badge badge-post">POST</span>
+                <h2>POST Method</h2>
+            </div>
+
+            <div class="info-box">
+                <p>Form data is sent in the <strong>request body</strong>, NOT visible in the URL.<br>
+                    Suitable for sensitive data like passwords and personal info.</p>
+            </div>
+
+            <form id="post-form" method="POST" action="#">
+                <div class="form-group">
+                    <label for="post-name">Full Name</label>
+                    <input type="text" id="post-name" name="name" placeholder="e.g. Jane Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-email">Email</label>
+                    <input type="email" id="post-email" name="email" placeholder="e.g. jane@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-password">Password</label>
+                    <input type="password" id="post-password" name="password" placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn btn-post">Submit via POST</button>
+            </form>
+
+            <div class="output-panel" id="post-output">
+                <p class="output-placeholder">Submit the form to see the body output here…</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── COMPARISON TABLE ── -->
+    <section class="comparison">
+        <h2>Key Differences</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th class="get-col">GET</th>
+                    <th class="post-col">POST</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data Location</td>
+                    <td>URL query string</td>
+                    <td>Request body</td>
+                </tr>
+                <tr>
+                    <td>Visibility</td>
+                    <td>Visible in browser bar</td>
+                    <td>Hidden from URL</td>
+                </tr>
+                <tr>
+                    <td>Bookmarkable</td>
+                    <td>✅ Yes</td>
+                    <td>❌ No</td>
+                </tr>
+                <tr>
+                    <td>Data Limit</td>
+                    <td>~2048 characters</td>
+                    <td>No practical limit</td>
+                </tr>
+                <tr>
+                    <td>Use Case</td>
+                    <td>Search, filtering</td>
+                    <td>Login, registration</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Less secure</td>
+                    <td>More secure</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        // ── GET form: show what the URL would contain ──
+        document.getElementById('get-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const data = new FormData(this);
+            const params = new URLSearchParams(data).toString();
+            const fakeUrl = window.location.pathname + '?' + params;
+
+            const panel = document.getElementById('get-output');
+            panel.innerHTML = `
+                <p class="output-title">🌐 URL would become:</p>
+                <code class="url-display">${fakeUrl}</code>
+                <p class="output-title" style="margin-top:12px;">📦 Data sent as query parameters:</p>
+                <ul class="data-list">
+                    ${[...data.entries()].map(([k, v]) =>
+                `<li><span class="key">${k}</span> = <span class="val">${v}</span></li>`
+            ).join('')}
+                </ul>
+                <p class="warning">⚠️ Anyone can see this data in the browser address bar!</p>`;
+        });
+
+        // ── POST form: show data would be hidden from URL ──
+        document.getElementById('post-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const data = new FormData(this);
+
+            const panel = document.getElementById('post-output');
+            panel.innerHTML = `
+                <p class="output-title">🌐 URL stays clean — no data appended:</p>
+                <code class="url-display">${window.location.pathname}</code>
+                <p class="output-title" style="margin-top:12px;">📦 Data sent in request body (hidden):</p>
+                <ul class="data-list">
+                    ${[...data.entries()].map(([k, v]) =>
+                `<li><span class="key">${k}</span> = <span class="val">${k === 'password' ? '••••••••' : v}</span></li>`
+            ).join('')}
+                </ul>
+                <p class="success">✅ Data is NOT visible in the URL — safer for sensitive info!</p>`;
+        });
+    </script>
+
+</body>
+
+</html>

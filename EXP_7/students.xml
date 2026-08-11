@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<students>
+    <student>
+        <roll_number>CSE-2026-001</roll_number>
+        <name>Aravind Kumar</name>
+        <department>Computer Science and Engineering</department>
+        <year>III Year</year>
+        <email>aravind.kumar@college.edu</email>
+        <mobile_number>+91 98765 43210</mobile_number>
+    </student>
+    <student>
+        <roll_number>CSE-2026-042</roll_number>
+        <name>Meera Jasmine</name>
+        <department>Information Technology</department>
+        <year>IV Year</year>
+        <email>meera.j@college.edu</email>
+        <mobile_number>+91 99445 12345</mobile_number>
+    </student>
+    <student>
+        <roll_number>ECE-2026-108</roll_number>
+        <name>Rohan Sharma</name>
+        <department>Electronics and Communication Engineering</department>
+        <year>II Year</year>
+        <email>rohan.sharma@college.edu</email>
+        <mobile_number>+91 88776 65544</mobile_number>
+    </student>
+    <student>
+        <roll_number>MECH-2026-015</roll_number>
+        <name>Siddharth Verma</name>
+        <department>Mechanical Engineering</department>
+        <year>III Year</year>
+        <email>sid.verma@college.edu</email>
+        <mobile_number>+91 77665 54433</mobile_number>
+    </student>
+</students>

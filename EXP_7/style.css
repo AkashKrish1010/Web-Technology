@@ -1,0 +1,109 @@
+/* Stylesheet for rendering the XML document directly in a web browser */
+
+students {
+    display: block;
+    max-width: 600px;
+    margin: 40px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0 20px;
+}
+
+students::before {
+    content: "Student Records Database (XML RENDERED)";
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #111827;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+student {
+    display: block;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.025);
+}
+
+roll_number {
+    display: block;
+    font-family: monospace;
+    font-weight: 600;
+    color: #2563eb;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+roll_number::before {
+    content: "ROLL NO: ";
+    color: #9ca3af;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+name {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 8px;
+}
+
+department {
+    display: block;
+    color: #374151;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+department::before {
+    content: "Department: ";
+    color: #6b7280;
+    font-weight: 500;
+}
+
+year {
+    display: block;
+    color: #374151;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+year::before {
+    content: "Year: ";
+    color: #6b7280;
+    font-weight: 500;
+}
+
+email {
+    display: block;
+    color: #2563eb;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+email::before {
+    content: "Email: ";
+    color: #6b7280;
+    font-weight: 500;
+}
+
+mobile_number {
+    display: block;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+mobile_number::before {
+    content: "Mobile: ";
+    color: #6b7280;
+    font-weight: 500;
+}

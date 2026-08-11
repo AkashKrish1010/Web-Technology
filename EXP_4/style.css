@@ -1,0 +1,427 @@
+:root {
+  --clr-bg: #0f1117;
+  --clr-surface: #1a1d27;
+  --clr-card: #1e2133;
+  --clr-border: #2e3350;
+  --clr-border-focus: #6c63ff;
+
+  --clr-primary: #6c63ff;
+  --clr-primary-hover: #5a52d5;
+  --clr-primary-glow: rgba(108, 99, 255, 0.25);
+
+  --clr-secondary: #2e3350;
+  --clr-secondary-hover: #3a4060;
+
+  --clr-text: #e2e6f0;
+  --clr-text-muted: #8890aa;
+  --clr-label: #a0a8c0;
+
+  --clr-gradient: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+  --clr-header-grad: linear-gradient(135deg, #1e2133 0%, #252a3f 100%);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-input: 0 0 0 3px var(--clr-primary-glow);
+
+  --transition: 0.25s ease;
+  --font: 'Inter', sans-serif;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--clr-bg);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(108, 99, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+  color: var(--clr-text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ---------- Page Wrapper ---------- */
+.page-wrapper {
+  width: 100%;
+  max-width: 620px;
+  animation: fadeInUp 0.6s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Form Card ---------- */
+.form-container {
+  background: var(--clr-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ---------- Form Header ---------- */
+.form-header {
+  background: var(--clr-header-grad);
+  border-bottom: 1px solid var(--clr-border);
+  padding: 2.5rem 2.5rem 2rem;
+  text-align: center;
+}
+
+.header-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(108, 99, 255, 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.form-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: var(--clr-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.4rem;
+}
+
+.form-subtitle {
+  color: var(--clr-text-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* ---------- Form Body ---------- */
+.registration-form {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---------- Form Groups ---------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group>label {
+  color: var(--clr-label);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* ---------- Inputs, Select, Textarea ---------- */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  background: var(--clr-surface);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  color: var(--clr-text);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+  color: var(--clr-text-muted);
+  opacity: 0.7;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--clr-border-focus);
+  box-shadow: var(--shadow-input);
+  background: #22263a;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="date"]:hover,
+select:hover,
+textarea:hover {
+  border-color: #4a5070;
+}
+
+/* Date input color fix */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
+
+/* Select arrow styling */
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238890aa' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+select option {
+  background: #1a1d27;
+  color: var(--clr-text);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ---------- Radio Group ---------- */
+.radio-group {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--clr-border);
+  border-radius: 50%;
+  background: var(--clr-surface);
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.radio-option input[type="radio"]:checked {
+  border-color: var(--clr-primary);
+  background: var(--clr-primary);
+  box-shadow: 0 0 0 3px var(--clr-primary-glow), inset 0 0 0 3px var(--clr-surface);
+}
+
+.radio-option input[type="radio"]:hover {
+  border-color: var(--clr-primary);
+}
+
+.radio-option label {
+  color: var(--clr-text);
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+/* ---------- File Upload ---------- */
+.file-upload-wrapper {
+  position: relative;
+}
+
+.file-upload-wrapper input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--clr-surface);
+  border: 1.5px dashed var(--clr-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.file-upload-wrapper:hover .file-upload-label {
+  border-color: var(--clr-primary);
+  background: #22263a;
+}
+
+.upload-icon {
+  font-size: 1.3rem;
+}
+
+.upload-text {
+  color: var(--clr-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Checkbox ---------- */
+.checkbox-group {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(108, 99, 255, 0.06);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--clr-border);
+  border-radius: 5px;
+  background: var(--clr-surface);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: background var(--transition), border-color var(--transition);
+  position: relative;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.checkbox-group label {
+  color: var(--clr-text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+/* ---------- Buttons ---------- */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--clr-gradient);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.4);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 28px rgba(108, 99, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--clr-secondary);
+  color: var(--clr-text-muted);
+  border: 1.5px solid var(--clr-border);
+}
+
+.btn-secondary:hover {
+  background: var(--clr-secondary-hover);
+  color: var(--clr-text);
+  transform: translateY(-2px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .form-header {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .registration-form {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .form-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}
