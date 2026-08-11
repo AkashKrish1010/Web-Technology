@@ -1,0 +1,238 @@
+/* ===== CSS Reset & Variables ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: hsl(252, 80%, 60%);
+  --primary-dark: hsl(252, 80%, 45%);
+  --accent: hsl(190, 90%, 50%);
+  --bg: hsl(220, 20%, 10%);
+  --card-bg: hsl(220, 18%, 14%);
+  --surface: hsl(220, 16%, 18%);
+  --text: hsl(220, 15%, 90%);
+  --text-muted: hsl(220, 10%, 60%);
+  --border: hsl(220, 15%, 22%);
+  --radius: 16px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ===== Profile Card ===== */
+.profile-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 720px;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+}
+
+/* ===== Banner ===== */
+.banner {
+  position: relative;
+  height: 180px;
+  background: linear-gradient(135deg, hsl(252,80%,45%), hsl(190,90%,40%));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.avatar-wrapper {
+  position: absolute;
+  bottom: -48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border: 4px solid var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.badge {
+  background: hsl(252, 80%, 30%);
+  color: hsl(252, 80%, 90%);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid hsl(252, 80%, 40%);
+}
+
+/* ===== Profile Body ===== */
+.profile-body {
+  padding: 64px 36px 36px;
+  text-align: center;
+}
+
+h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
+
+.subtitle {
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.college {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* ===== Stats ===== */
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-box:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.stat-value { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+.stat-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ===== Sections ===== */
+.section {
+  text-align: left;
+  margin-top: 32px;
+}
+
+.section h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* ===== Skills ===== */
+.skills-grid { display: flex; flex-direction: column; gap: 10px; }
+
+.skill-item { display: flex; align-items: center; gap: 12px; }
+
+.skill-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.skill-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--surface);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 99px;
+  animation: fill-bar 1.2s ease-out forwards;
+  width: 0;
+}
+
+@keyframes fill-bar {
+  from { width: 0; }
+  to { width: var(--target-width, 100%); }
+}
+
+/* ===== Contact ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  transition: all 0.2s;
+}
+
+.contact-card:hover {
+  border-color: var(--primary);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.contact-card .icon { font-size: 1.1rem; }
+
+/* ===== Media Queries ===== */
+@media (max-width: 600px) {
+  .profile-body { padding: 64px 20px 28px; }
+  h1 { font-size: 1.5rem; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .stats-row { gap: 8px; }
+  .stat-box { min-width: 70px; padding: 10px 14px; }
+}
+
+@media (max-width: 400px) {
+  .banner { height: 140px; }
+  .stats-row { gap: 6px; }
+}

@@ -1,0 +1,106 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: hsl(220,22%,8%);
+  --calc-bg: hsl(220,18%,12%);
+  --display-bg: hsl(220,20%,7%);
+  --btn-num: hsl(220,16%,20%);
+  --btn-op: hsl(252,70%,50%);
+  --btn-fn: hsl(220,16%,16%);
+  --btn-clear: hsl(0,65%,48%);
+  --btn-eq: hsl(150,65%,42%);
+  --text: hsl(220,15%,92%);
+  --muted: hsl(220,10%,55%);
+  --radius: 12px;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  flex-direction: column;
+  gap: 16px;
+}
+.calc-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.calculator {
+  background: var(--calc-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  border: 1px solid hsl(220,15%,18%);
+}
+/* Display */
+.display {
+  background: var(--display-bg);
+  padding: 20px 20px 14px;
+  text-align: right;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.expression {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--muted);
+  min-height: 20px;
+  word-break: break-all;
+}
+.result {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 2.4rem;
+  font-weight: 700;
+  word-break: break-all;
+  transition: font-size 0.15s;
+}
+.result.shrink { font-size: 1.6rem; }
+
+/* Grid */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: hsl(220,15%,10%);
+  padding: 0;
+}
+/* First two rows: 5 cols */
+.btn-grid .btn:nth-child(-n+10) { /* fn row */ }
+
+/* Rows 3–7 need 4 cols – restructure with grid-column overrides */
+.btn-grid .btn:nth-child(n+11) {
+  /* default falls into 5-col layout; we'll manage with explicit columns */
+}
+
+/* Actually let's just use a single 4-col grid for the main part and keep fn as 5-col */
+/* Better approach: separate grids */
+
+.btn {
+  padding: 18px 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+  color: var(--text);
+  user-select: none;
+}
+.btn:hover  { filter: brightness(1.2); }
+.btn:active { transform: scale(0.95); filter: brightness(0.9); }
+
+.btn.fn    { background: var(--btn-fn);    font-size: 0.8rem; }
+.btn.num   { background: var(--btn-num); }
+.btn.op    { background: var(--btn-op);  color: white; }
+.btn.clear { background: var(--btn-clear); }
+.btn.eq    { background: var(--btn-eq); color: white; font-size: 1.1rem; }

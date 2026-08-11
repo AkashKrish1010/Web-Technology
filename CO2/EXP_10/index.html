@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debug &amp; Correct Web Application</title>
+  <meta name="description" content="Web application debugging sandbox featuring exception handling, try-catch, console logging, and element inspection." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🐞 Debug &amp; Error Correction Lab</h1>
+      <p>Demonstration of DevTools inspection, console logging, try-catch exception handling, and error correction.</p>
+    </header>
+
+    <div class="debug-grid">
+      <!-- Controls Panel -->
+      <section class="card controls-card">
+        <h2>Interactive Bug Tests</h2>
+        <p class="subtitle">Click buttons below to trigger controlled runtime errors or execute debug functions:</p>
+
+        <div class="test-buttons">
+          <button class="btn test-btn" onclick="triggerReferenceError()">1. ReferenceError Test ⚠️</button>
+          <button class="btn test-btn" onclick="triggerTypeError()">2. TypeError Test 🚫</button>
+          <button class="btn test-btn" onclick="triggerDivisionByZero()">3. Logical Error Test ➗</button>
+          <button class="btn test-btn" onclick="triggerSafeCalculation()">4. Handled Exception (try...catch) ✅</button>
+          <button class="btn test-btn" onclick="toggleBrokenCSS()">5. Toggle Broken CSS Inspector 🎨</button>
+        </div>
+
+        <div class="buggy-box" id="targetElement">
+          <h3>Target Inspector Element</h3>
+          <p id="inspectText">Inspect this element in Browser DevTools Elements Panel!</p>
+          <span class="badge" id="inspectBadge">Status: Normal</span>
+        </div>
+      </section>
+
+      <!-- Live Debug Console Output -->
+      <section class="card console-card">
+        <div class="console-header">
+          <h2>📟 Simulated DevTools Console</h2>
+          <button class="btn-clear" onclick="clearConsole()">Clear Logs</button>
+        </div>
+        <div class="console-output" id="consoleOutput">
+          <div class="log-line info">[System] Debugging sandbox initialized. Open F12 DevTools for live debugging.</div>
+        </div>
+
+        <div class="eval-box">
+          <input type="text" id="evalInput" placeholder="Type JS expression or code to evaluate..." />
+          <button class="btn-eval" onclick="executeEval()">Run (eval)</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic To-Do List</title>
+  <meta name="description" content="A dynamic to-do list app with add, edit, delete, filter, and priority features." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>✅ My To-Do List</h1>
+      <div class="header-stats">
+        <span id="totalCount">0 tasks</span>
+        <span id="doneCount">0 done</span>
+      </div>
+    </header>
+
+    <!-- Add Task -->
+    <div class="add-section">
+      <div class="add-row">
+        <input type="text" id="taskInput" placeholder="What needs to be done?" maxlength="120" />
+        <select id="prioritySelect">
+          <option value="low">🟢 Low</option>
+          <option value="medium" selected>🟡 Medium</option>
+          <option value="high">🔴 High</option>
+        </select>
+        <button class="btn-add" id="addBtn" onclick="addTask()">Add</button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-row">
+      <button class="filter-btn active" id="filter-all"       data-filter="all"       onclick="setFilter(this)">All</button>
+      <button class="filter-btn"        id="filter-active"    data-filter="active"    onclick="setFilter(this)">Active</button>
+      <button class="filter-btn"        id="filter-completed" data-filter="completed" onclick="setFilter(this)">Completed</button>
+      <button class="filter-btn"        id="filter-high"      data-filter="high"      onclick="setFilter(this)">🔴 High</button>
+      <button class="btn-clear"         id="clearDoneBtn"     onclick="clearCompleted()">Clear Done</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap">
+      <div class="progress-bar"><div id="progressFill"></div></div>
+      <span id="progressLabel">0%</span>
+    </div>
+
+    <!-- Task List -->
+    <ul class="task-list" id="taskList">
+      <!-- Tasks rendered by JS -->
+    </ul>
+
+    <p class="empty-msg" id="emptyMsg">No tasks yet. Add one above! 🎯</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

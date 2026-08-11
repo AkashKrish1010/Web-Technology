@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Clock & Exam Countdown Timer</title>
+  <meta name="description" content="Live Digital Clock and Examination Countdown Timer built with JavaScript Date object and setInterval." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⏰ Clock &amp; Exam Countdown</h1>
+      <p>Real-time digital clock and customizable examination countdown timer</p>
+    </header>
+
+    <!-- Real-time Clock Card -->
+    <div class="card clock-card">
+      <div class="card-header">
+        <span class="dot live-dot"></span>
+        <h2>Live Digital Clock</h2>
+      </div>
+      <div class="clock-display">
+        <div class="time-main" id="clockTime">00:00:00</div>
+        <div class="time-ampm" id="clockAmpm">AM</div>
+      </div>
+      <div class="date-display" id="clockDate">Loading date...</div>
+      <div class="timezone-display" id="clockTimezone">Timezone: GMT+0530 (IST)</div>
+    </div>
+
+    <!-- Exam Countdown Card -->
+    <div class="card countdown-card">
+      <div class="card-header">
+        <h2>🎓 Examination Countdown Timer</h2>
+      </div>
+
+      <div class="exam-picker">
+        <div class="form-group">
+          <label for="examSelect">Select Examination:</label>
+          <select id="examSelect" onchange="handleExamChange()">
+            <option value="custom">-- Custom Exam Date --</option>
+            <option value="web-tech" selected>Web Technology End-Sem (Nov 25, 2026 09:30 AM)</option>
+            <option value="dsa">Data Structures &amp; Algorithms (Dec 02, 2026 09:30 AM)</option>
+            <option value="dbms">Database Systems (Dec 08, 2026 09:30 AM)</option>
+          </select>
+        </div>
+        <div class="form-group" id="customDateGroup">
+          <label for="customExamDate">Custom Exam Date &amp; Time:</label>
+          <input type="datetime-local" id="customExamDate" />
+        </div>
+        <button class="btn-start" onclick="updateCountdownTarget()">Start Countdown</button>
+      </div>
+
+      <div class="countdown-grid" id="countdownGrid">
+        <div class="count-box">
+          <span class="count-val" id="days">00</span>
+          <span class="count-label">Days</span>
+        </div>
+        <div class="count-box">
+          <span class="count-val" id="hours">00</span>
+          <span class="count-label">Hours</span>
+        </div>
+        <div class="count-box">
+          <span class="count-val" id="minutes">00</span>
+          <span class="count-label">Minutes</span>
+        </div>
+        <div class="count-box">
+          <span class="count-val" id="seconds">00</span>
+          <span class="count-label">Seconds</span>
+        </div>
+      </div>
+
+      <div class="status-msg" id="statusMsg">Countdown active for Web Technology End-Sem</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

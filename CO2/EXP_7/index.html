@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Quiz – Web Technology</title>
+  <meta name="description" content="Test your Web Technology knowledge with this auto-scored online quiz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="quiz-app" id="quizApp">
+    <!-- Start Screen -->
+    <div class="screen" id="startScreen">
+      <div class="start-icon">🧠</div>
+      <h1>Web Technology Quiz</h1>
+      <p>10 questions · Multiple choice · Auto-scored</p>
+      <div class="quiz-meta">
+        <span>⏱️ 10 min timer</span>
+        <span>✅ Instant feedback</span>
+        <span>📊 Score report</span>
+      </div>
+      <button class="btn-start" id="startBtn" onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div class="screen" id="quizScreen" style="display:none">
+      <div class="quiz-topbar">
+        <div class="q-progress">
+          <span id="qNum">Q1</span> of <span id="qTotal">10</span>
+        </div>
+        <div class="timer" id="timer">10:00</div>
+        <div class="score-live">Score: <span id="liveScore">0</span></div>
+      </div>
+      <div class="progress-track"><div id="quizProgress"></div></div>
+
+      <div class="question-card" id="questionCard">
+        <p class="q-category" id="qCategory"></p>
+        <h2 class="q-text" id="qText"></h2>
+        <div class="options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn-next" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="screen" id="resultScreen" style="display:none">
+      <div class="result-badge" id="resultBadge"></div>
+      <h1>Quiz Complete!</h1>
+      <div class="score-display">
+        <span id="finalScore">0</span>/<span id="maxScore">10</span>
+      </div>
+      <p class="score-label" id="scoreLabel"></p>
+      <div class="result-stats" id="resultStats"></div>
+      <div class="answers-review" id="answersReview"></div>
+      <button class="btn-start" id="restartBtn" onclick="restartQuiz()">Try Again 🔄</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: hsl(220,20%,9%); --card: hsl(220,18%,13%); --surface: hsl(220,16%,17%);
+  --border: hsl(220,15%,22%); --text: hsl(220,15%,90%); --muted: hsl(220,10%,55%);
+  --primary: hsl(252,80%,62%); --success: hsl(150,65%,45%); --warn: hsl(45,100%,55%);
+  --error: hsl(0,75%,55%); --radius: 12px;
+}
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 32px 16px; }
+.container { max-width: 900px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 32px; }
+header h1 { font-size: 1.8rem; font-weight: 800; }
+header p { color: var(--muted); margin-top: 6px; font-size: 0.9rem; }
+
+.input-section { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; margin-bottom: 28px; }
+.subject-inputs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 20px; }
+
+.subject-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.subject-card label { font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 10px; }
+.subject-card .inputs { display: flex; gap: 8px; align-items: center; }
+.subject-card input[type="number"] {
+  flex: 1; background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 8px 12px; color: var(--text); font-size: 0.88rem; outline: none; width: 100%;
+  transition: border-color 0.2s;
+}
+.subject-card input:focus { border-color: var(--primary); }
+.subject-card .max-label { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+
+.btn-row { display: flex; gap: 12px; }
+.btn-primary, .btn-secondary {
+  padding: 12px 28px; border-radius: 10px; border: none; font-size: 0.95rem;
+  font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.btn-primary { background: linear-gradient(135deg, var(--primary), hsl(190,85%,45%)); color: white; }
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-secondary { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--primary); color: var(--text); }
+
+/* Results */
+.results-section { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+.results-section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 18px; }
+.table-wrapper { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+thead tr { background: var(--surface); }
+th { padding: 12px 14px; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); font-weight: 700; }
+td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+tbody tr:hover { background: var(--surface); }
+
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+.badge.pass { background: hsl(150,65%,15%); color: hsl(150,65%,55%); border: 1px solid hsl(150,65%,25%); }
+.badge.fail { background: hsl(0,65%,15%); color: hsl(0,65%,60%); border: 1px solid hsl(0,65%,25%); }
+
+.grade-O  { color: hsl(150,70%,50%); font-weight: 800; }
+.grade-A  { color: hsl(190,80%,55%); font-weight: 700; }
+.grade-B  { color: hsl(252,80%,70%); font-weight: 700; }
+.grade-C  { color: hsl(45,100%,58%); font-weight: 700; }
+.grade-F  { color: hsl(0,75%,55%);   font-weight: 700; }
+
+/* Stats grid */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 24px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center; }
+.stat-card .s-val { font-size: 1.5rem; font-weight: 800; }
+.stat-card .s-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+/* Performance bars */
+.perf-section { margin-top: 24px; }
+.perf-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+.perf-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.perf-bar-row .subj-name { width: 150px; font-size: 0.82rem; color: var(--muted); flex-shrink: 0; }
+.perf-bar-track { flex: 1; height: 10px; background: var(--surface); border-radius: 99px; overflow: hidden; }
+.perf-bar-fill { height: 100%; border-radius: 99px; transition: width 1s ease; }
+.perf-bar-row .pct-label { font-size: 0.78rem; font-weight: 600; width: 40px; text-align: right; }

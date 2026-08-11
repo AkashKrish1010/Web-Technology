@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart & Billing System</title>
+  <meta name="description" content="Product Shopping Cart and Billing System with discount, tax, and itemized total calculation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛒 Product Shopping Cart &amp; Billing</h1>
+      <p>Select products, manage cart items, apply promo codes, and generate bill</p>
+    </header>
+
+    <div class="shop-grid">
+      <!-- Product Catalog -->
+      <section class="catalog-section">
+        <h2>Available Products</h2>
+        <div class="products-grid" id="productsGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- Cart & Billing -->
+      <section class="cart-section">
+        <h2>Shopping Cart (<span id="cartItemCount">0</span>)</h2>
+        <div class="cart-items" id="cartItems">
+          <p class="empty-cart-msg" id="emptyCartMsg">Your cart is empty. Add products from the catalog!</p>
+        </div>
+
+        <div class="promo-box">
+          <input type="text" id="promoInput" placeholder="Promo code (e.g. SAVE10)" />
+          <button onclick="applyPromo()">Apply</button>
+        </div>
+        <div class="promo-status" id="promoStatus"></div>
+
+        <!-- Billing Summary -->
+        <div class="billing-summary">
+          <h3>Bill Summary</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="subtotalVal">₹0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Discount (<span id="discountPct">0</span>%)</span>
+            <span id="discountVal" class="discount-txt">-₹0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>GST Tax (18%)</span>
+            <span id="taxVal">+₹0.00</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total Amount</span>
+            <span id="totalVal">₹0.00</span>
+          </div>
+          <button class="btn-checkout" onclick="generateInvoice()">Checkout &amp; Generate Invoice</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Invoice Modal / Section -->
+    <div class="invoice-modal" id="invoiceModal" style="display:none;">
+      <div class="invoice-card">
+        <div class="invoice-header">
+          <h2>🧾 Official Invoice</h2>
+          <button class="close-btn" onclick="closeInvoice()">✖</button>
+        </div>
+        <div class="invoice-details">
+          <p><strong>Invoice ID:</strong> <span id="invId"></span></p>
+          <p><strong>Date:</strong> <span id="invDate"></span></p>
+        </div>
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceBody"></tbody>
+        </table>
+        <div class="invoice-summary" id="invoiceSummary"></div>
+        <button class="btn-print" onclick="window.print()">Print Invoice 🖨️</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

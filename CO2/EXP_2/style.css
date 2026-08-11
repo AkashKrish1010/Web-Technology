@@ -1,0 +1,112 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --primary: hsl(252, 80%, 62%);
+  --primary-dark: hsl(252, 80%, 48%);
+  --success: hsl(150, 70%, 45%);
+  --error: hsl(0, 75%, 55%);
+  --bg: hsl(220, 20%, 9%);
+  --card: hsl(220, 18%, 13%);
+  --surface: hsl(220, 16%, 17%);
+  --border: hsl(220, 15%, 22%);
+  --text: hsl(220, 15%, 90%);
+  --muted: hsl(220, 10%, 55%);
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 32px 16px;
+}
+.container { max-width: 680px; margin: 0 auto; }
+.form-card {
+  background: var(--card);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+.form-header {
+  background: linear-gradient(135deg, hsl(252,80%,48%), hsl(190,85%,42%));
+  padding: 32px;
+  text-align: center;
+}
+.form-header h1 { font-size: 1.6rem; font-weight: 800; }
+.form-header p { color: rgba(255,255,255,0.75); font-size: 0.88rem; margin-top: 6px; }
+form { padding: 28px 32px; }
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+}
+legend {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary);
+  padding: 0 8px;
+}
+.form-row.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { margin-bottom: 16px; }
+.form-group:last-child { margin-bottom: 0; }
+label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="date"], input[type="password"], select {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px hsla(252,80%,62%,0.15); }
+input.valid { border-color: var(--success); }
+input.invalid { border-color: var(--error); }
+select { cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%236b7280' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px;
+}
+.radio-group { display: flex; gap: 20px; flex-wrap: wrap; }
+.radio-label { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--text); cursor: pointer; font-weight: 400; }
+.radio-label input[type="radio"] { accent-color: var(--primary); width: 16px; height: 16px; }
+.input-icon-wrap { position: relative; }
+.input-icon-wrap input { padding-right: 44px; }
+.toggle-btn {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; font-size: 1rem; padding: 0; line-height: 1;
+}
+/* Strength meter */
+.strength-meter {
+  height: 4px; background: var(--border); border-radius: 99px; margin-top: 6px; overflow: hidden;
+}
+#strengthBar { height: 100%; width: 0; border-radius: 99px; transition: width 0.3s, background 0.3s; }
+.strength-label { font-size: 0.72rem; font-weight: 600; margin-top: 3px; display: block; }
+.error-msg { color: var(--error); font-size: 0.75rem; margin-top: 4px; display: block; min-height: 16px; }
+.checkbox-label {
+  display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--muted); cursor: pointer; font-weight: 400;
+}
+.checkbox-label input { accent-color: var(--primary); width: 16px; height: 16px; flex-shrink: 0; }
+.checkbox-label a { color: var(--primary); text-decoration: none; }
+.btn-submit {
+  width: 100%; background: linear-gradient(135deg, var(--primary), hsl(190,85%,45%));
+  color: white; border: none; border-radius: 10px; padding: 14px;
+  font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 20px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-submit:active { transform: translateY(0); }
+/* Success */
+.success-card { padding: 48px 32px; text-align: center; }
+.success-icon { font-size: 3.5rem; margin-bottom: 16px; }
+.success-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+.success-card p { color: var(--muted); margin-bottom: 24px; }
+@media (max-width: 520px) {
+  form { padding: 20px 18px; }
+  .form-row.two-col { grid-template-columns: 1fr; }
+}

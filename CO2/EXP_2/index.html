@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration Form</title>
+  <meta name="description" content="Student registration form with client-side JavaScript validation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="form-card">
+      <div class="form-header">
+        <h1>Student Registration</h1>
+        <p>Fill in the details below to create your student account</p>
+      </div>
+
+      <form id="registrationForm" novalidate>
+        <!-- Personal Info -->
+        <fieldset>
+          <legend>Personal Information</legend>
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" placeholder="e.g. Akash" autocomplete="given-name" />
+              <span class="error-msg" id="firstNameErr"></span>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" placeholder="e.g. Krishnamurthy" autocomplete="family-name" />
+              <span class="error-msg" id="lastNameErr"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth *</label>
+            <input type="date" id="dob" name="dob" />
+            <span class="error-msg" id="dobErr"></span>
+          </div>
+          <div class="form-group">
+            <label>Gender *</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="gender" value="male" id="genderMale" /> Male</label>
+              <label class="radio-label"><input type="radio" name="gender" value="female" id="genderFemale" /> Female</label>
+              <label class="radio-label"><input type="radio" name="gender" value="other" id="genderOther" /> Other</label>
+            </div>
+            <span class="error-msg" id="genderErr"></span>
+          </div>
+        </fieldset>
+
+        <!-- Contact Info -->
+        <fieldset>
+          <legend>Contact Information</legend>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="student@example.com" autocomplete="email" />
+            <span class="error-msg" id="emailErr"></span>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" autocomplete="tel" />
+            <span class="error-msg" id="phoneErr"></span>
+          </div>
+        </fieldset>
+
+        <!-- Academic Info -->
+        <fieldset>
+          <legend>Academic Information</legend>
+          <div class="form-group">
+            <label for="rollNo">Roll Number *</label>
+            <input type="text" id="rollNo" name="rollNo" placeholder="e.g. 22CS001" />
+            <span class="error-msg" id="rollNoErr"></span>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label for="department">Department *</label>
+              <select id="department" name="department">
+                <option value="">-- Select --</option>
+                <option value="CSE">Computer Science</option>
+                <option value="ECE">Electronics</option>
+                <option value="MECH">Mechanical</option>
+                <option value="CIVIL">Civil</option>
+                <option value="IT">Information Technology</option>
+              </select>
+              <span class="error-msg" id="departmentErr"></span>
+            </div>
+            <div class="form-group">
+              <label for="year">Year of Study *</label>
+              <select id="year" name="year">
+                <option value="">-- Select --</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+              </select>
+              <span class="error-msg" id="yearErr"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Password -->
+        <fieldset>
+          <legend>Account Security</legend>
+          <div class="form-group">
+            <label for="password">Password *</label>
+            <div class="input-icon-wrap">
+              <input type="password" id="password" name="password" placeholder="Min 8 chars, 1 uppercase, 1 number" autocomplete="new-password" />
+              <button type="button" id="togglePwd" class="toggle-btn" aria-label="Toggle password visibility">👁️</button>
+            </div>
+            <div class="strength-meter"><div id="strengthBar"></div></div>
+            <span class="strength-label" id="strengthLabel"></span>
+            <span class="error-msg" id="passwordErr"></span>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password *</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" />
+            <span class="error-msg" id="confirmPasswordErr"></span>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="terms" name="terms" />
+            I agree to the <a href="#">Terms &amp; Conditions</a>
+          </label>
+          <span class="error-msg" id="termsErr"></span>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-submit">Register Now</button>
+      </form>
+
+      <!-- Success Message -->
+      <div class="success-card" id="successCard" style="display:none">
+        <div class="success-icon">✅</div>
+        <h2>Registration Successful!</h2>
+        <p id="successMsg"></p>
+        <button class="btn-submit" onclick="resetForm()">Register Another</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
