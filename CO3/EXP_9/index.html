@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 9 | Servlet Lifecycle Demonstration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 9</div>
+      <h1>Servlet Lifecycle Demonstration</h1>
+      <p class="subtitle">Inspecting <code>constructor()</code>, <code>init(ServletConfig)</code>, <code>service() / doGet()</code>, and <code>destroy()</code></p>
+    </header>
+
+    <!-- Top Lifecycle Phases Visualizer -->
+    <div class="lifecycle-track">
+      <div class="phase-card" id="phaseConstructor">
+        <div class="phase-number">1</div>
+        <div class="phase-title">Loading &amp; Instantiation</div>
+        <div class="phase-method">Constructor()</div>
+        <div class="phase-count">Executed: <strong id="valConstructor">1</strong> time</div>
+        <p class="phase-desc">Tomcat loads the bytecode and creates a single instance via default constructor.</p>
+      </div>
+
+      <div class="phase-card" id="phaseInit">
+        <div class="phase-number">2</div>
+        <div class="phase-title">Initialization</div>
+        <div class="phase-method">init(ServletConfig)</div>
+        <div class="phase-count">Executed: <strong id="valInit">1</strong> time</div>
+        <p class="phase-desc">Executed once per lifecycle to load configuration parameters &amp; database pools.</p>
+      </div>
+
+      <div class="phase-card active-phase" id="phaseService">
+        <div class="phase-number">3</div>
+        <div class="phase-title">Request Servicing</div>
+        <div class="phase-method">service() &rarr; doGet()</div>
+        <div class="phase-count">Executed: <strong id="valService" style="color:#6366f1;">0</strong> times</div>
+        <p class="phase-desc">Executed on every client HTTP request in a dedicated worker thread.</p>
+      </div>
+
+      <div class="phase-card" id="phaseDestroy">
+        <div class="phase-number">4</div>
+        <div class="phase-title">Destruction &amp; GC</div>
+        <div class="phase-method">destroy()</div>
+        <div class="phase-count">Executed: <strong id="valDestroy">0</strong> times</div>
+        <p class="phase-desc">Called once when Tomcat undeploys the app or shuts down to release resources.</p>
+      </div>
+    </div>
+
+    <!-- Main Controls Layout -->
+    <div class="main-layout">
+      <!-- Interactive Simulator & Actions -->
+      <section class="card">
+        <h2 class="card-title">🎮 Lifecycle Event Controller</h2>
+
+        <div class="btn-grid">
+          <button id="sendReqBtn" class="btn btn-primary">⚡ Dispatch Client Request (doGet)</button>
+          <button id="burstBtn" class="btn btn-secondary">🚀 Simulate 10 Concurrent Requests</button>
+          <button id="redeployBtn" class="btn btn-warning">🔄 Simulate Container Redeploy</button>
+          <a href="LifecycleServlet" class="btn btn-outline">🌐 Open Live Tomcat Servlet Endpoint</a>
+        </div>
+
+        <div class="stats-summary">
+          <div class="stat-pill">
+            <span>Lifecycle State:</span>
+            <strong id="lifecycleState" class="text-green">RUNNING / READY</strong>
+          </div>
+          <div class="stat-pill">
+            <span>Thread Model:</span>
+            <strong>Multi-Threaded Service</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Terminal Log Console -->
+      <section class="card log-card">
+        <div class="log-top">
+          <h2 class="card-title" style="border:none; margin:0; padding:0;">🖥️ Servlet Container Event Log</h2>
+          <button id="clearLogBtn" class="btn btn-sm btn-outline">Clear</button>
+        </div>
+
+        <div class="console-box" id="consoleBox">
+          <div class="log-line text-blue">[Tomcat] -> Classloader loaded LifecycleServlet.class</div>
+          <div class="log-line">[LifecycleServlet] -> Constructor invoked. Instance created.</div>
+          <div class="log-line text-green">[LifecycleServlet] -> init(ServletConfig) completed. (departmentCode = SSE-WEBTECH-2026)</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

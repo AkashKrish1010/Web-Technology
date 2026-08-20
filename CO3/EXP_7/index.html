@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 7 | Student Registration Form Processing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 7</div>
+      <h1>Student Registration Form Processing Using Servlet</h1>
+      <p class="subtitle">Demonstrating <code>doPost()</code>, <code>request.getParameter()</code>, Server-Side Validation, and Dynamic Profile Rendering</p>
+    </header>
+
+    <div class="main-layout">
+      <!-- HTML Registration Form -->
+      <section class="card form-card">
+        <h2 class="card-title">📝 Student Admission Portal</h2>
+
+        <form id="regForm" action="StudentRegistrationServlet" method="POST">
+          <div class="form-group">
+            <label for="studentName">Student Full Name <span class="required">*</span></label>
+            <input type="text" id="studentName" name="studentName" placeholder="e.g. Priya Venkatesh" required autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="regNumber">Register Number <span class="required">*</span></label>
+            <input type="text" id="regNumber" name="regNumber" placeholder="e.g. RA2211003010042" required autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Student Official Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="priya@saveetha.com" required autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="department">Department <span class="required">*</span></label>
+              <select id="department" name="department" required>
+                <option value="" disabled selected>Select Department</option>
+                <option value="Computer Science & Engineering">Computer Science &amp; Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication">Electronics &amp; Communication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="semester">Semester <span class="required">*</span></label>
+              <select id="semester" name="semester" required>
+                <option value="" disabled selected>Select Semester</option>
+                <option value="Semester 1">Semester 1 (Year I)</option>
+                <option value="Semester 3">Semester 3 (Year II)</option>
+                <option value="Semester 5">Semester 5 (Year III)</option>
+                <option value="Semester 6">Semester 6 (Year III)</option>
+                <option value="Semester 7">Semester 7 (Year IV)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">🚀 Submit Form (doPost)</button>
+            <button type="button" id="simulatePostBtn" class="btn btn-secondary">⚡ Browser Dynamic Test</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Architecture & Concurrency Explanation -->
+      <section class="card info-card">
+        <h2 class="card-title">⚙️ Servlet doPost() Flow</h2>
+
+        <div class="flow-list">
+          <div class="flow-item">
+            <div class="flow-badge">1</div>
+            <div>
+              <strong>Form Encoded POST Request</strong>
+              <p>Form parameters are sent in HTTP payload to <code>/StudentRegistrationServlet</code>.</p>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-badge">2</div>
+            <div>
+              <strong>request.getParameter() Extraction</strong>
+              <p>The servlet retrieves <code>studentName</code>, <code>regNumber</code>, <code>email</code>, <code>department</code>, <code>semester</code> safely inside method-local variables.</p>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-badge">3</div>
+            <div>
+              <strong>Server-Side Validation</strong>
+              <p>Validates empty checks and formats before generating response.</p>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-badge">4</div>
+            <div>
+              <strong>PrintWriter HTML Stream</strong>
+              <p>Builds dynamic HTML response page for the client browser.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-tags">
+          <span class="tag">Java HttpServlet</span>
+          <span class="tag">doPost()</span>
+          <span class="tag">Apache Tomcat</span>
+          <span class="tag">Thread-Safe Local Vars</span>
+        </div>
+      </section>
+    </div>
+
+    <!-- Live Simulation Result Card -->
+    <div id="simResultContainer" class="sim-result-wrapper" style="display: none;">
+      <div class="result-card">
+        <div class="res-badge">Dynamic Servlet Output (Simulated doPost)</div>
+        <h2>Registration Confirmed</h2>
+        <p>This output demonstrates the exact dynamic HTML table generated by <code>StudentRegistrationServlet.java</code>.</p>
+
+        <table class="res-table">
+          <tr>
+            <td>Student Name:</td>
+            <td id="resName">Priya Venkatesh</td>
+          </tr>
+          <tr>
+            <td>Register Number:</td>
+            <td id="resReg" class="font-mono">RA2211003010042</td>
+          </tr>
+          <tr>
+            <td>Email Address:</td>
+            <td id="resEmail">priya@saveetha.com</td>
+          </tr>
+          <tr>
+            <td>Department:</td>
+            <td id="resDept">Computer Science &amp; Engineering</td>
+          </tr>
+          <tr>
+            <td>Semester:</td>
+            <td id="resSem">Semester 6</td>
+          </tr>
+          <tr>
+            <td>Processed By:</td>
+            <td><code>StudentRegistrationServlet.doPost()</code></td>
+          </tr>
+        </table>
+
+        <button id="closeSimBtn" class="btn btn-secondary">&larr; Close Result View</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

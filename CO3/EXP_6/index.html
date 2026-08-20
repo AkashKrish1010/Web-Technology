@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 6 | Dynamic Content Generation Servlet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 6</div>
+      <h1>Basic Java Servlet for Dynamic Content Generation</h1>
+      <p class="subtitle">Demonstrating <code>HttpServlet</code>, <code>doGet()</code>, <code>HttpServletRequest</code>, <code>HttpServletResponse</code>, <code>PrintWriter</code>, and Apache Tomcat Mapping</p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Request Configurator -->
+      <section class="card">
+        <h2 class="card-title">🚀 Dispatch GET Request to Servlet</h2>
+        <form id="servletForm" action="WelcomeServlet" method="GET">
+          <div class="form-group">
+            <label for="studentName">Student Name &amp; Register Number</label>
+            <input type="text" id="studentName" name="studentName" value="Arjun Sharma (RA2211003010042)" required />
+          </div>
+
+          <div class="form-group">
+            <label for="courseName">Course Title &amp; Code</label>
+            <input type="text" id="courseName" name="courseName" value="Web Technology (21CS301T)" required />
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">⚡ Send GET Request (Tomcat)</button>
+            <button type="button" id="simulateBtn" class="btn btn-secondary">🖥️ Live Browser Simulator</button>
+          </div>
+        </form>
+
+        <div class="note-box">
+          <div class="note-title">📌 Tomcat Deployment:</div>
+          <p>When running under Apache Tomcat, this form sends an HTTP GET request to <code>/WelcomeServlet</code>, executing <code>doGet()</code> and streaming back dynamic HTML from <code>PrintWriter</code>.</p>
+        </div>
+      </section>
+
+      <!-- Architecture & Servlet Source Viewer -->
+      <section class="card">
+        <h2 class="card-title">☕ WelcomeServlet.java Architecture</h2>
+        <div class="servlet-pipeline">
+          <div class="pipeline-step">
+            <div class="step-num">1</div>
+            <div><strong>Client GET Request</strong>: Browser requests <code>/WelcomeServlet?studentName=...</code></div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">2</div>
+            <div><strong>Tomcat Dispatcher</strong>: Maps URL to <code>WelcomeServlet.class</code> via <code>web.xml</code></div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">3</div>
+            <div><strong>doGet() Execution</strong>: Extracts parameters, computes server timestamp</div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">4</div>
+            <div><strong>PrintWriter Stream</strong>: Generates dynamic HTML response directly to client</div>
+          </div>
+        </div>
+
+        <div class="code-preview-box">
+          <div class="code-title">Key Servlet Snippet:</div>
+          <pre><code>protected void doGet(HttpServletRequest req, HttpServletResponse res)
+    throws ServletException, IOException {
+  res.setContentType("text/html;charset=UTF-8");
+  PrintWriter out = res.getWriter();
+  out.println("&lt;h1&gt;Welcome " + req.getParameter("studentName") + "&lt;/h1&gt;");
+  out.println("&lt;p&gt;Server Time: " + LocalDateTime.now() + "&lt;/p&gt;");
+}</code></pre>
+        </div>
+      </section>
+    </div>
+
+    <!-- Live Dynamic Simulation View -->
+    <div id="simulationView" class="sim-view" style="display:none;">
+      <div class="sim-card">
+        <div class="sim-badge">Dynamic Servlet Output (Simulated)</div>
+        <h2 id="simHeading">Welcome to Web Technology!</h2>
+        <p>This dynamic response simulates the exact HTML stream produced by <code>WelcomeServlet.java</code> via <code>PrintWriter</code>.</p>
+
+        <div class="sim-info-grid">
+          <div class="sim-row">
+            <span>Student Name:</span>
+            <strong id="simStudent">-</strong>
+          </div>
+          <div class="sim-row">
+            <span>Course Name:</span>
+            <strong id="simCourse">-</strong>
+          </div>
+          <div class="sim-row">
+            <span>Live Server Time:</span>
+            <strong id="simTimestamp" class="text-blue">-</strong>
+          </div>
+          <div class="sim-row">
+            <span>HTTP Method:</span>
+            <strong>GET (doGet)</strong>
+          </div>
+        </div>
+
+        <button id="closeSimBtn" class="btn btn-secondary" style="margin-top:20px;">&larr; Close Simulation</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 4 | Browser Information Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 4</div>
+      <h1>Browser Information Dashboard Using Window Object</h1>
+      <p class="subtitle">Inspecting <code>window.location</code>, <code>window.innerWidth / innerHeight</code>, <code>window.scrollX / scrollY</code>, <code>navigator</code>, <code>screen</code>, and the <code>resize</code> event</p>
+    </header>
+
+    <!-- Top Live Metrics Grid -->
+    <div class="metrics-grid">
+      <!-- Network Status -->
+      <div class="metric-card" id="networkCard">
+        <div class="metric-icon">🌐</div>
+        <div class="metric-info">
+          <span class="metric-title">Online Status (navigator.onLine)</span>
+          <span id="onlineStatus" class="metric-value status-online">Checking...</span>
+        </div>
+      </div>
+
+      <!-- Viewport Dimensions -->
+      <div class="metric-card">
+        <div class="metric-icon">📐</div>
+        <div class="metric-info">
+          <span class="metric-title">Viewport (innerWidth × innerHeight)</span>
+          <span id="viewportDimensions" class="metric-value">0 × 0 px</span>
+        </div>
+      </div>
+
+      <!-- Screen Resolution -->
+      <div class="metric-card">
+        <div class="metric-icon">🖥️</div>
+        <div class="metric-info">
+          <span class="metric-title">Display Screen (screen.width × height)</span>
+          <span id="screenDimensions" class="metric-value">0 × 0 px</span>
+        </div>
+      </div>
+
+      <!-- Scroll Coordinates -->
+      <div class="metric-card">
+        <div class="metric-icon">📜</div>
+        <div class="metric-info">
+          <span class="metric-title">Scroll Offset (scrollX, scrollY)</span>
+          <span id="scrollPosition" class="metric-value">X: 0 | Y: 0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Inspectors Layout -->
+    <div class="main-layout">
+      <!-- Window Location Inspector -->
+      <section class="card">
+        <h2 class="card-title">📍 Location Object (window.location)</h2>
+        <div class="prop-table">
+          <div class="prop-row">
+            <span class="prop-key">location.href</span>
+            <span class="prop-val code-val" id="locHref">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">location.protocol</span>
+            <span class="prop-val" id="locProtocol">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">location.host</span>
+            <span class="prop-val" id="locHost">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">location.pathname</span>
+            <span class="prop-val" id="locPathname">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">location.origin</span>
+            <span class="prop-val" id="locOrigin">-</span>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button id="reloadBtn" class="btn btn-secondary">🔄 window.location.reload()</button>
+          <button id="hashBtn" class="btn btn-outline">🏷️ Update Hash (#dashboard)</button>
+        </div>
+      </section>
+
+      <!-- Navigator & Screen Inspector -->
+      <section class="card">
+        <h2 class="card-title">🧭 Navigator &amp; Screen (navigator, screen)</h2>
+        <div class="prop-table">
+          <div class="prop-row">
+            <span class="prop-key">navigator.language</span>
+            <span class="prop-val" id="navLang">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">navigator.userAgent</span>
+            <span class="prop-val code-val" id="navUserAgent">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">navigator.cookieEnabled</span>
+            <span class="prop-val" id="navCookie">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">screen.colorDepth</span>
+            <span class="prop-val" id="screenDepth">-</span>
+          </div>
+          <div class="prop-row">
+            <span class="prop-key">screen.availWidth × availHeight</span>
+            <span class="prop-val" id="screenAvail">-</span>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button id="scrollToTopBtn" class="btn btn-primary">⬆️ window.scrollTo(0, 0)</button>
+          <button id="scrollToBottomBtn" class="btn btn-secondary">⬇️ Scroll to Bottom</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Live Window Resize Simulation Playground -->
+    <section class="card resize-playground">
+      <h2 class="card-title">🔄 Live Resize Event Tracker</h2>
+      <p class="section-desc">Resize your browser window to observe real-time triggers fired by <code>window.addEventListener('resize', ...)</code>.</p>
+      
+      <div class="resize-box" id="resizeBox">
+        <div class="resize-tag">Current Aspect Ratio: <strong id="aspectRatioVal">16:9</strong></div>
+        <div class="resize-progress-bar">
+          <div id="widthProgress" class="progress-fill" style="width: 50%;"></div>
+        </div>
+        <div class="resize-stats">
+          <span>Width: <strong id="liveW">0</strong>px</span>
+          <span>Height: <strong id="liveH">0</strong>px</span>
+          <span>Resize Event Count: <strong id="resizeCount">0</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content padding to enable scroll demonstration -->
+    <div class="scroll-demo-zone">
+      <h3>📜 Scroll Demonstration Zone</h3>
+      <p>Scroll down or use the navigation buttons above to watch <code>window.scrollX</code> and <code>window.scrollY</code> update dynamically in real time.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

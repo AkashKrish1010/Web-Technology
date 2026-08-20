@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 5 | Cross-Browser Compatibility & Feature Detection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 5</div>
+      <h1>Cross-Browser Compatible Interactive Webpage</h1>
+      <p class="subtitle">Feature Detection, Polyfills, Fallbacks for <code>localStorage</code>, <code>querySelector()</code>, and CSS <code>@supports</code></p>
+    </header>
+
+    <!-- Browser Feature Detection Matrix -->
+    <section class="card matrix-card">
+      <h2 class="card-title">🛡️ Client Feature Detection Audit</h2>
+      <div class="feature-grid" id="featureMatrix">
+        <!-- Injected via feature detection script -->
+      </div>
+    </section>
+
+    <div class="main-layout">
+      <!-- Interactive Storage with Graceful Fallback -->
+      <section class="card">
+        <h2 class="card-title">💾 Persistent Note Pad (localStorage vs In-Memory Fallback)</h2>
+        <p class="section-desc">Attempts native <code>localStorage</code>. If disabled (private browsing / unsupported), it seamlessly routes through an in-memory storage fallback.</p>
+
+        <div class="form-group">
+          <label for="noteInput">Student Personal Notes</label>
+          <textarea id="noteInput" rows="4" placeholder="Type your personal study notes here..."></textarea>
+        </div>
+
+        <div class="storage-meta">
+          <span>Active Storage Provider: <strong id="activeProvider" class="provider-badge">Detecting...</strong></span>
+        </div>
+
+        <div class="btn-group">
+          <button id="saveNoteBtn" class="btn btn-primary">💾 Save Note</button>
+          <button id="clearNoteBtn" class="btn btn-secondary">🗑️ Clear Note</button>
+          <button id="toggleStorageMockBtn" class="btn btn-outline">🧪 Simulate Disabled Storage</button>
+        </div>
+
+        <p id="storageFeedback" class="feedback-msg"></p>
+      </section>
+
+      <!-- Selector Engine Fallback Demo -->
+      <section class="card">
+        <h2 class="card-title">🎯 Element Selector Engine (querySelector vs Fallback)</h2>
+        <p class="section-desc">Demonstrating cross-browser safe element querying: uses <code>querySelector()</code> if available, otherwise delegates to legacy DOM methods (<code>getElementById</code>, <code>getElementsByTagName</code>).</p>
+
+        <div class="selector-demo-box" id="selectorTargetContainer">
+          <div class="demo-item target-alpha" id="itemAlpha">Alpha Element (id="itemAlpha")</div>
+          <div class="demo-item target-beta" id="itemBeta">Beta Element (class="target-beta")</div>
+          <div class="demo-item target-gamma" id="itemGamma">Gamma Element (data-flag="active")</div>
+        </div>
+
+        <div class="btn-group-vertical">
+          <button id="queryNativeBtn" class="btn btn-secondary">🔍 Safe Query by ID</button>
+          <button id="queryFallbackClassBtn" class="btn btn-secondary">🔍 Safe Query by Class</button>
+          <button id="highlightAllBtn" class="btn btn-primary">✨ Highlight All Safe Query Targets</button>
+        </div>
+
+        <div class="code-log">
+          <div class="code-log-header">Selector Engine Trace:</div>
+          <pre id="selectorLog">Ready to execute selector queries...</pre>
+        </div>
+      </section>
+    </div>
+
+    <!-- CSS @supports Visual Demonstration -->
+    <section class="card supports-card">
+      <h2 class="card-title">🎨 CSS @supports Feature Queries Demonstration</h2>
+      <p class="section-desc">This section uses CSS <code>@supports (backdrop-filter: blur(10px))</code> and <code>@supports (display: grid)</code> to render modern glassmorphic styling on supported browsers, with a solid fallback on older engines.</p>
+
+      <div class="glass-container">
+        <div class="glass-card">
+          <h3>Glassmorphism UI Card</h3>
+          <p>If your browser supports <code>backdrop-filter</code>, this card has a frosted glass effect. On legacy browsers, a solid high-contrast fallback background is applied.</p>
+          <span class="support-status-chip">Checked via CSS @supports</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

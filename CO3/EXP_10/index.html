@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 10 | Thread-Safe Visitor Counter Servlet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 10</div>
+      <h1>Thread-Safe Concurrent Visitor Counter Using Servlet</h1>
+      <p class="subtitle">Analysing Race Conditions in Shared Instance Variables vs <code>AtomicInteger</code> / <code>synchronized</code> Concurrency Controls</p>
+    </header>
+
+    <!-- Side-by-Side Dual Counter Visualizer -->
+    <div class="counter-display-grid">
+      <!-- Unsafe Counter -->
+      <div class="counter-card card-unsafe">
+        <div class="counter-header">
+          <span class="hazard-badge">⚠️ Race-Prone</span>
+          <h3>Standard Primitive (int)</h3>
+        </div>
+        <div class="counter-digit" id="unsafeCounter">0</div>
+        <p class="counter-desc">Non-atomic read-modify-write. Concurrent requests interleave operations resulting in <strong>lost updates</strong>.</p>
+        <div class="counter-stat">Lost Updates: <strong id="lostUpdatesCount" class="text-danger">0</strong></div>
+      </div>
+
+      <!-- Thread-Safe Atomic Counter -->
+      <div class="counter-card card-safe">
+        <div class="counter-header">
+          <span class="safe-badge">🛡️ Thread-Safe</span>
+          <h3>AtomicInteger / Synchronized</h3>
+        </div>
+        <div class="counter-digit" id="safeCounter">0</div>
+        <p class="counter-desc">Uses hardware-level lock-free <strong>Compare-And-Swap (CAS)</strong>. Every single request is counted accurately.</p>
+        <div class="counter-stat">Accuracy: <strong class="text-success">100.0%</strong></div>
+      </div>
+    </div>
+
+    <!-- Interactive Simulation Studio -->
+    <div class="main-layout">
+      <section class="card controls-card">
+        <h2 class="card-title">⚡ Traffic Simulation Lab</h2>
+
+        <div class="btn-grid">
+          <button id="singleHitBtn" class="btn btn-secondary">👆 Single Visitor Hit (1 Request)</button>
+          <button id="concurrent50Btn" class="btn btn-warning">⚡ Fire 50 Concurrent Threads</button>
+          <button id="concurrent200Btn" class="btn btn-danger">🔥 Fire 200 High-Contention Threads</button>
+          <button id="resetCountersBtn" class="btn btn-outline">🔄 Reset Counters</button>
+          <a href="VisitorCounterServlet" class="btn btn-primary">🌐 Open Live Tomcat Servlet Endpoint</a>
+        </div>
+
+        <div class="traffic-progress" id="progressBox" style="display:none;">
+          <div class="progress-label"><span>Simulating Traffic:</span> <strong id="progressText">0 / 0</strong></div>
+          <div class="progress-bar-track">
+            <div id="progressFill" class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Concurrency Knowledge Base -->
+      <section class="card info-card">
+        <h2 class="card-title">💡 Servlet Concurrency Deep-Dive</h2>
+        <div class="concept-list">
+          <div class="concept-item">
+            <strong>1. Servlet Singleton Architecture</strong>
+            <p>Servlet containers (Tomcat) instantiate only <em>one single instance</em> of each servlet. All incoming client requests share that same instance.</p>
+          </div>
+          <div class="concept-item">
+            <strong>2. Shared Instance Variables vs Local Variables</strong>
+            <p>Instance fields (e.g., <code>private int count</code>) live on the heap and are shared across all worker threads. Local variables (inside <code>doGet()</code>) live on the thread's call stack and are 100% thread-safe.</p>
+          </div>
+          <div class="concept-item">
+            <strong>3. How AtomicInteger Fixes Race Conditions</strong>
+            <p><code>AtomicInteger.incrementAndGet()</code> uses CPU-level atomic instructions, preventing threads from reading stale values during concurrent execution.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

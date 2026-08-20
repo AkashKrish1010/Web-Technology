@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 2 | Dynamic Student Registration List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 2</div>
+      <h1>Dynamic Student Registration List Using DOM</h1>
+      <p class="subtitle">Demonstrating <code>createElement()</code>, <code>appendChild()</code>, <code>remove()</code>, <code>parentElement</code>, and <code>children</code></p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Input Form Card -->
+      <section class="card form-card">
+        <h2 class="card-title">📝 Student Entry Form</h2>
+        <form id="studentForm">
+          <div class="form-group">
+            <label for="studentName">Student Full Name <span class="required">*</span></label>
+            <input type="text" id="studentName" placeholder="e.g. Priya Venkatesh" required autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="regNumber">Register Number <span class="required">*</span></label>
+            <input type="text" id="regNumber" placeholder="e.g. RA2211003010042" required autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="department">Department / Branch <span class="required">*</span></label>
+            <select id="department" required>
+              <option value="" disabled selected>Select Department</option>
+              <option value="Computer Science & Engineering">Computer Science &amp; Engineering</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Electronics & Communication">Electronics &amp; Communication</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Biomedical Engineering">Biomedical Engineering</option>
+            </select>
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" id="addStudentBtn" class="btn btn-primary">➕ Add Student</button>
+            <button type="reset" class="btn btn-secondary">🔄 Reset Form</button>
+          </div>
+          <p id="formFeedback" class="feedback-msg"></p>
+        </form>
+      </section>
+
+      <!-- Student Records List Card -->
+      <section class="card list-card">
+        <div class="list-header">
+          <div>
+            <h2 class="card-title" style="border:none; margin-bottom:4px; padding:0;">👥 Registered Students</h2>
+            <p class="list-meta">Total Count: <strong id="studentCount">0</strong> students</p>
+          </div>
+          <button id="clearAllBtn" class="btn btn-danger">🗑️ Clear All</button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="students-table" id="studentsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student Details</th>
+                <th>Department</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="studentListBody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p>No student records yet. Use the form on the left to add records dynamically!</p>
+          </div>
+        </div>
+
+        <!-- DOM Tree Inspector -->
+        <div class="dom-inspector">
+          <div class="inspector-title">🔍 DOM Tree Inspector (children & parentElement):</div>
+          <div id="inspectorText" class="inspector-content">tableBody.children.length = 0</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

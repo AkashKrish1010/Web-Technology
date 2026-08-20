@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 3 | Interactive Event Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 3</div>
+      <h1>Interactive Event Registration Using JavaScript Events</h1>
+      <p class="subtitle">Demonstrating Intrinsic vs Modern <code>addEventListener()</code>: <code>onclick</code>, <code>change</code>, <code>input</code>, <code>focus</code>, <code>blur</code>, <code>mouseover</code>, <code>mouseout</code>, <code>submit</code></p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Registration Form -->
+      <section class="card form-card">
+        <h2 class="card-title">🎪 Tech Symposium 2026 Registration</h2>
+
+        <!-- Note the mix of intrinsic inline attributes and modern event targets -->
+        <form id="eventRegForm">
+          <!-- Full Name: focus, blur, input -->
+          <div class="form-group">
+            <label for="fullName">Participant Full Name <span class="required">*</span></label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="e.g. Rahul Sharma"
+              required
+              autocomplete="off"
+            />
+            <span class="field-hint" id="nameHint">Trigger: focus / blur / input</span>
+          </div>
+
+          <!-- Email: input, change -->
+          <div class="form-group">
+            <label for="emailInput">Email Address <span class="required">*</span></label>
+            <input
+              type="email"
+              id="emailInput"
+              placeholder="rahul@example.com"
+              required
+              autocomplete="off"
+            />
+            <span class="field-hint" id="emailHint">Trigger: input / change</span>
+          </div>
+
+          <!-- Event Track: change (demonstrated intrinsically as well) -->
+          <div class="form-group">
+            <label for="eventTrack">Choose Event Track <span class="required">*</span></label>
+            <select id="eventTrack" onchange="handleIntrinsicChange(this.value)" required>
+              <option value="" disabled selected>Select an Event Track</option>
+              <option value="Hackathon (24h Web Sprint)">Hackathon (24h Web Sprint)</option>
+              <option value="AI & Robotics Challenge">AI &amp; Robotics Challenge</option>
+              <option value="UI/UX Designathon">UI/UX Designathon</option>
+              <option value="Cloud Security Masterclass">Cloud Security Masterclass</option>
+            </select>
+            <span class="field-hint">Trigger: change (Intrinsic onchange + addEventListener)</span>
+          </div>
+
+          <!-- Interactive Hover Zone: mouseover / mouseout -->
+          <div class="form-group">
+            <label>Interactive VIP Pass Zone (Mouse Events)</label>
+            <div
+              id="hoverZone"
+              class="hover-box"
+              onmouseover="handleIntrinsicMouseOver(this)"
+              onmouseout="handleIntrinsicMouseOut(this)"
+            >
+              <span id="hoverText">✨ Hover over this box to explore VIP perks!</span>
+            </div>
+            <span class="field-hint">Trigger: mouseover / mouseout</span>
+          </div>
+
+          <!-- T&C Checkbox: change -->
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="termsCheck" required />
+              I agree to the Symposium Code of Conduct
+            </label>
+          </div>
+
+          <!-- Buttons: onclick (intrinsic and listener), submit -->
+          <div class="btn-group">
+            <!-- Intrinsic onclick button -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="handleIntrinsicClick(event)"
+            >
+              ⚡ Intrinsic Click
+            </button>
+
+            <!-- Modern submit button -->
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+              🚀 Submit Registration
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Event Analytics & Comparison Panel -->
+      <section class="card log-card">
+        <div class="log-header">
+          <h2 class="card-title" style="border:none; margin:0; padding:0;">📡 Live Event Dispatch Console</h2>
+          <button id="clearLogBtn" class="btn btn-sm btn-outline">Clear Log</button>
+        </div>
+
+        <div class="comparison-summary">
+          <div class="metric-chip intrinsic-chip">
+            <span class="metric-label">Intrinsic Events:</span>
+            <span id="intrinsicCount" class="metric-val">0</span>
+          </div>
+          <div class="metric-chip modern-chip">
+            <span class="metric-label">addEventListener:</span>
+            <span id="modernCount" class="metric-val">0</span>
+          </div>
+          <div class="metric-chip total-chip">
+            <span class="metric-label">Total Dispatched:</span>
+            <span id="totalEventsCount" class="metric-val">0</span>
+          </div>
+        </div>
+
+        <!-- Event Table Stream -->
+        <div class="event-stream" id="eventStream">
+          <div class="stream-placeholder">Interact with form inputs, buttons, and hover zones to watch real-time events fire here...</div>
+        </div>
+
+        <!-- Educational Comparison Card -->
+        <div class="comparison-card">
+          <h4>💡 Intrinsic vs Modern Event Handling</h4>
+          <ul>
+            <li><strong>Intrinsic (Inline HTML):</strong> Defined in markup (e.g. <code>onclick="fn()"</code>). Mixes structure and logic, limited to one handler per event.</li>
+            <li><strong>Modern (addEventListener):</strong> Cleanly separates JS logic, supports multiple listeners, event capture/bubble phases, and dynamic removal (<code>removeEventListener</code>).</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

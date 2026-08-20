@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CO3 - EXP 8 | Online Student Result Processing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-pattern"></div>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="badge">CO3 — Experiment 8</div>
+      <h1>Online Student Result Processing Using Servlet</h1>
+      <p class="subtitle">Processing 5 Subject Marks, Computing Total, Average, Highest/Lowest Marks, Grade &amp; Pass/Fail Status via Servlet</p>
+    </header>
+
+    <div class="main-layout">
+      <!-- Input Marks Form -->
+      <section class="card form-card">
+        <h2 class="card-title">📝 Student Semester Marks Entry</h2>
+
+        <form id="resultForm" action="StudentResultServlet" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="studentName">Student Full Name <span class="required">*</span></label>
+              <input type="text" id="studentName" name="studentName" value="Arjun Sharma" required />
+            </div>
+
+            <div class="form-group">
+              <label for="regNumber">Register Number <span class="required">*</span></label>
+              <input type="text" id="regNumber" name="regNumber" value="RA2211003010042" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department" value="Computer Science & Engineering" required />
+          </div>
+
+          <div class="marks-section">
+            <h3 class="marks-header">Subject Marks (Out of 100)</h3>
+            <div class="marks-grid">
+              <div class="form-group">
+                <label for="mark1">1. Web Technology</label>
+                <input type="number" id="mark1" name="mark1" min="0" max="100" value="94" required />
+              </div>
+              <div class="form-group">
+                <label for="mark2">2. DBMS</label>
+                <input type="number" id="mark2" name="mark2" min="0" max="100" value="88" required />
+              </div>
+              <div class="form-group">
+                <label for="mark3">3. Data Structures</label>
+                <input type="number" id="mark3" name="mark3" min="0" max="100" value="92" required />
+              </div>
+              <div class="form-group">
+                <label for="mark4">4. Operating Systems</label>
+                <input type="number" id="mark4" name="mark4" min="0" max="100" value="85" required />
+              </div>
+              <div class="form-group">
+                <label for="mark5">5. Computer Networks</label>
+                <input type="number" id="mark5" name="mark5" min="0" max="100" value="90" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">🚀 Submit to Servlet (Tomcat)</button>
+            <button type="button" id="simulateResultBtn" class="btn btn-secondary">⚡ Browser Dynamic Preview</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Grade Scheme & Logic Info -->
+      <section class="card info-card">
+        <h2 class="card-title">📊 Grading Scale &amp; Processing Rules</h2>
+
+        <div class="grade-table">
+          <div class="grade-row">
+            <span class="grade-badge grade-o">O</span>
+            <span class="grade-range">90% - 100%</span>
+            <span class="grade-desc">Outstanding</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-badge grade-a-plus">A+</span>
+            <span class="grade-range">80% - 89%</span>
+            <span class="grade-desc">Excellent</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-badge grade-a">A</span>
+            <span class="grade-range">70% - 79%</span>
+            <span class="grade-desc">Very Good</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-badge grade-b">B+</span>
+            <span class="grade-range">60% - 69%</span>
+            <span class="grade-desc">Good</span>
+          </div>
+          <div class="grade-row">
+            <span class="grade-badge grade-ra">RA</span>
+            <span class="grade-range">&lt; 50%</span>
+            <span class="grade-desc">Reappear / Fail</span>
+          </div>
+        </div>
+
+        <div class="validation-note">
+          <h4>🛡️ Server-Side Validation Specs:</h4>
+          <ul>
+            <li>Checks non-numeric &amp; missing mark strings</li>
+            <li>Enforces range <code>0 &le; mark &le; 100</code></li>
+            <li>Subject pass cutoff: 50 marks</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Live Simulation Result Container -->
+    <div id="simResultWrapper" class="sim-wrapper" style="display:none;">
+      <div class="result-card">
+        <div class="res-top">
+          <div>
+            <span class="badge" style="background:#0284c7; color:#fff;">Dynamic Output</span>
+            <h2 id="resStudent">Arjun Sharma</h2>
+            <p id="resMeta" class="text-muted">REG: RA2211003010042 | CSE</p>
+          </div>
+          <div id="resStatusBadge" class="status-pill pass">PASS</div>
+        </div>
+
+        <div class="metrics-row">
+          <div class="metric-box">
+            <span class="m-label">Total Score</span>
+            <span class="m-val" id="resTotal">449 / 500</span>
+          </div>
+          <div class="metric-box">
+            <span class="m-label">Average</span>
+            <span class="m-val" id="resAvg">89.80%</span>
+          </div>
+          <div class="metric-box">
+            <span class="m-label">Highest Mark</span>
+            <span class="m-val" id="resHigh">94</span>
+          </div>
+          <div class="metric-box">
+            <span class="m-label">Final Grade</span>
+            <span class="m-val" id="resGrade">A+</span>
+          </div>
+        </div>
+
+        <table class="marks-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Subject</th>
+              <th>Score</th>
+              <th>Max</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="resTableBody">
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+
+        <button id="closeResultBtn" class="btn btn-secondary" style="margin-top:20px;">&larr; Close Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
