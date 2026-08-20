@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration Preview</title>
+  <meta name="description" content="DOM-based interactive student registration preview using JavaScript event handling and dynamic content generation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Background decoration -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="bg-dots"></div>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-logo">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2L22 7V12C22 17 17.5 21.5 13 23C8.5 21.5 4 17 4 12V7L13 2Z" fill="white" fill-opacity="0.85"/>
+            <path d="M10 13L12 15L16 11" stroke="#1e3a5f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="header-text">
+          <h1>Student Registration</h1>
+          <span class="header-sub">DOM Manipulation — CO3 EXP 1</span>
+        </div>
+      </div>
+      <div class="header-divider"></div>
+      <span class="header-tag">Live Preview</span>
+    </header>
+
+    <main class="main-layout">
+
+      <!-- Form Card -->
+      <section class="form-card" aria-label="Registration Form">
+        <div class="form-card-header">
+          <h2 class="form-card-title">Registration Details</h2>
+          <p class="form-card-sub">Fill in all fields and click Display Profile to generate the student card.</p>
+        </div>
+
+        <div class="form-body">
+
+          <div class="form-group">
+            <label for="studentName" class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="studentName" class="form-input" placeholder="e.g., Arjun Sharma" autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="regNumber" class="form-label">Register Number <span class="required">*</span></label>
+            <input type="text" id="regNumber" class="form-input" placeholder="e.g., RA2211003010001" autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="department" class="form-label">Department <span class="required">*</span></label>
+            <select id="department" class="form-select">
+              <option value="" disabled selected>Select your department</option>
+              <option value="Computer Science &amp; Engineering">Computer Science &amp; Engineering</option>
+              <option value="Electronics &amp; Communication">Electronics &amp; Communication</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Biomedical Engineering">Biomedical Engineering</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="yearOfStudy" class="form-label">Year of Study <span class="required">*</span></label>
+            <select id="yearOfStudy" class="form-select">
+              <option value="" disabled selected>Select year</option>
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year">3rd Year</option>
+              <option value="4th Year">4th Year</option>
+            </select>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary" id="displayBtn">Display Profile</button>
+            <button class="btn btn-danger"  id="removeBtn" style="display:none;">Remove Profile</button>
+          </div>
+
+          <p class="validation-msg" id="validationMsg" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- Profile Preview -->
+      <section class="profile-section" id="profileSection" aria-label="Student Profile Preview">
+
+        <!-- Placeholder -->
+        <div class="profile-placeholder" id="profilePlaceholder">
+          <div class="placeholder-icon">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="52" height="52" rx="12" fill="#e5e7eb"/>
+              <circle cx="26" cy="20" r="8" fill="#9ca3af"/>
+              <path d="M10 42C10 34.268 17.163 28 26 28C34.837 28 42 34.268 42 42" stroke="#9ca3af" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p>Your student profile will appear here after you fill in the details and click <strong>Display Profile</strong>.</p>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="profile-card" id="profileCard" style="display:none;">
+
+          <div class="profile-banner">
+            <div class="avatar" id="profileAvatar">A</div>
+            <div class="profile-header-info">
+              <h3 id="profileName">Name</h3>
+              <span class="dept-badge" id="profileDept">Department</span>
+            </div>
+          </div>
+
+          <div class="profile-details">
+
+            <div class="detail-row">
+              <div class="detail-icon-box">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="3" width="12" height="10" rx="2" stroke="#2563eb" stroke-width="1.4"/>
+                  <path d="M5 7h6M5 10h4" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <span class="detail-label">Register Number</span>
+                <span class="detail-value" id="profileRegNo">—</span>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <div class="detail-icon-box">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 1.5L14 4.5V7C14 10.5 11.5 13.5 8 14.5C4.5 13.5 2 10.5 2 7V4.5L8 1.5Z" stroke="#2563eb" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <span class="detail-label">Department</span>
+                <span class="detail-value" id="profileDeptDetail">—</span>
+              </div>
+            </div>
+
+            <div class="detail-row">
+              <div class="detail-icon-box">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="3" width="12" height="11" rx="2" stroke="#2563eb" stroke-width="1.4"/>
+                  <path d="M5 1v4M11 1v4M2 7h12" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <span class="detail-label">Year of Study</span>
+                <span class="detail-value" id="profileYear">—</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="profile-footer">
+            <span class="status-chip">Active Student</span>
+            <span class="generated-time" id="generatedTime"></span>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

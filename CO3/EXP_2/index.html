@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Result Processing</title>
+  <meta name="description" content="Student result processing — validates marks, calculates total, average, highest mark and pass/fail status dynamically." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-decor">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+  </div>
+
+  <div class="page-wrapper">
+
+    <header class="app-header">
+      <div class="institute-brand">
+        <div class="brand-logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="#1e3a5f"/>
+            <path d="M16 6L26 11V15C26 20.5 21.5 25.5 16 27C10.5 25.5 6 20.5 6 15V11L16 6Z" fill="white" fill-opacity="0.9"/>
+            <path d="M13 16L15 18L19 14" stroke="#1e3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Academic Portal</span>
+          <span class="brand-sub">Result Management System</span>
+        </div>
+      </div>
+      <div class="header-divider"></div>
+      <div class="header-meta">
+        <span class="meta-tag">CO3 — EXP 2</span>
+        <span class="meta-tag">Client-Side Processing</span>
+      </div>
+    </header>
+
+    <!-- FORM VIEW -->
+    <div id="formView">
+      <main class="main-layout">
+
+        <section class="form-card">
+          <div class="form-card-header">
+            <h1 class="form-title">Student Result Submission</h1>
+            <p class="form-subtitle">Enter the student details and subject marks to compute the result.</p>
+          </div>
+
+          <div class="form-body">
+
+            <fieldset class="fieldset">
+              <legend class="fieldset-legend">Student Information</legend>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="studentName" class="form-label">Full Name <span class="required">*</span></label>
+                  <input type="text" id="studentName" class="form-input" placeholder="Enter student's full name" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                  <label for="regNumber" class="form-label">Register Number <span class="required">*</span></label>
+                  <input type="text" id="regNumber" class="form-input" placeholder="e.g. RA2211003010042" autocomplete="off" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend class="fieldset-legend">Subject Marks <span class="legend-note">(Range: 0 to 100)</span></legend>
+              <div class="marks-grid">
+                <div class="form-group">
+                  <label for="marks1" class="form-label">Subject 1 <span class="required">*</span></label>
+                  <input type="number" id="marks1" class="form-input marks-input" placeholder="0–100" min="0" max="100" />
+                </div>
+                <div class="form-group">
+                  <label for="marks2" class="form-label">Subject 2 <span class="required">*</span></label>
+                  <input type="number" id="marks2" class="form-input marks-input" placeholder="0–100" min="0" max="100" />
+                </div>
+                <div class="form-group">
+                  <label for="marks3" class="form-label">Subject 3 <span class="required">*</span></label>
+                  <input type="number" id="marks3" class="form-input marks-input" placeholder="0–100" min="0" max="100" />
+                </div>
+              </div>
+            </fieldset>
+
+            <p class="validation-msg" id="clientValidation" aria-live="polite"></p>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="resetBtn">Reset Form</button>
+              <button type="button" class="btn btn-primary" id="submitBtn">Process Result</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="info-panel">
+          <div class="info-header">
+            <h2 class="info-title">How It Works</h2>
+            <p class="info-desc">This application demonstrates client-side result computation using JavaScript — simulating a Java Servlet workflow.</p>
+          </div>
+
+          <ol class="step-list">
+            <li class="step">
+              <div class="step-content">
+                <strong>Input Collection</strong>
+                <p>Student name, register number and three subject marks are read from the form using <code>getElementById()</code>.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-content">
+                <strong>Validation</strong>
+                <p>Checks for missing fields and ensures marks are within the valid range of 0 to 100.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-content">
+                <strong>Computation</strong>
+                <p>Calculates Total, Average, Highest Mark, and Pass / Fail status dynamically.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-content">
+                <strong>Dynamic Output</strong>
+                <p>Result card is rendered into the DOM using <code>textContent</code> and <code>style</code> — equivalent to <code>PrintWriter</code> in a Java Servlet.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="info-divider"></div>
+
+          <div class="tech-table">
+            <div class="tech-row"><span class="tech-label">Method</span><span class="tech-value">Client-Side JS (doPost equivalent)</span></div>
+            <div class="tech-row"><span class="tech-label">Reads</span><span class="tech-value">getElementById() / value</span></div>
+            <div class="tech-row"><span class="tech-label">Validates</span><span class="tech-value">Range check (0–100), null check</span></div>
+            <div class="tech-row"><span class="tech-label">Output</span><span class="tech-value">Dynamic DOM result card</span></div>
+          </div>
+        </aside>
+
+      </main>
+    </div>
+
+    <!-- RESULT VIEW (hidden initially) -->
+    <div id="resultView" style="display:none;">
+      <div class="result-card" id="resultCard">
+        <div class="result-header-bar" id="resultHeaderBar">
+          <div>
+            <h2 class="result-heading">Student Result Card</h2>
+            <p class="result-subheading">Computed dynamically — no page reload</p>
+          </div>
+          <div class="status-pill" id="statusPill"></div>
+        </div>
+
+        <div class="student-banner">
+          <div class="avatar" id="resAvatar"></div>
+          <div class="student-info">
+            <h3 id="resName"></h3>
+            <span class="reg-badge" id="resReg"></span>
+          </div>
+        </div>
+
+        <div class="marks-breakdown">
+          <h4 class="breakdown-title">Marks Breakdown</h4>
+          <div class="bar-list" id="barList"></div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-label">Total</span><span class="stat-value" id="resTotal"></span><span class="stat-suffix">/ 300</span></div>
+          <div class="stat-card"><span class="stat-label">Average</span><span class="stat-value" id="resAvg"></span><span class="stat-suffix">/ 100</span></div>
+          <div class="stat-card"><span class="stat-label">Highest</span><span class="stat-value" id="resHigh"></span><span class="stat-suffix">marks</span></div>
+          <div class="stat-card"><span class="stat-label">Lowest</span><span class="stat-value" id="resLow"></span><span class="stat-suffix">marks</span></div>
+          <div class="stat-card"><span class="stat-label">Grade</span><span class="stat-value" id="resGrade" style="font-size:1rem;"></span><span class="stat-suffix"></span></div>
+        </div>
+
+        <div class="result-footer">
+          <button class="btn btn-secondary" id="backBtn">Back to Form</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      CO3 — Assessment 1 &nbsp;|&nbsp; Experiment 2 &nbsp;|&nbsp; Student Result Processing
+    </footer>
+  </div>
+
+  <script>
+    // ── DOM refs ─────────────────────────────────────────────────────────────
+    const submitBtn      = document.getElementById('submitBtn');
+    const resetBtn       = document.getElementById('resetBtn');
+    const backBtn        = document.getElementById('backBtn');
+    const msgEl          = document.getElementById('clientValidation');
+    const formView       = document.getElementById('formView');
+    const resultView     = document.getElementById('resultView');
+
+    // ── Validate & Process ───────────────────────────────────────────────────
+    submitBtn.addEventListener('click', function () {
+      const name  = document.getElementById('studentName').value.trim();
+      const regNo = document.getElementById('regNumber').value.trim();
+      const m1v   = document.getElementById('marks1').value;
+      const m2v   = document.getElementById('marks2').value;
+      const m3v   = document.getElementById('marks3').value;
+
+      function showErr(msg) {
+        msgEl.textContent = msg;
+        msgEl.className   = 'validation-msg error';
+      }
+      msgEl.textContent = '';
+      msgEl.className   = 'validation-msg';
+
+      if (!name)                          return showErr('Student name is required.');
+      if (!regNo)                         return showErr('Register number is required.');
+      if (m1v === '' || m2v === '' || m3v === '') return showErr('Please enter marks for all three subjects.');
+
+      const m1 = Number(m1v), m2 = Number(m2v), m3 = Number(m3v);
+      if ([m1,m2,m3].some(m => isNaN(m) || m < 0 || m > 100))
+        return showErr('All marks must be between 0 and 100.');
+
+      // ── Compute ──────────────────────────────────────────────────────────
+      const total   = m1 + m2 + m3;
+      const avg     = total / 3;
+      const highest = Math.max(m1, m2, m3);
+      const lowest  = Math.min(m1, m2, m3);
+      const passed  = avg >= 50 && m1 >= 35 && m2 >= 35 && m3 >= 35;
+
+      let grade;
+      if      (avg >= 90) grade = 'O — Outstanding';
+      else if (avg >= 80) grade = 'A+ — Excellent';
+      else if (avg >= 70) grade = 'A — Very Good';
+      else if (avg >= 60) grade = 'B+ — Good';
+      else if (avg >= 50) grade = 'B — Average';
+      else                grade = 'F — Fail';
+
+      // ── Populate result card ──────────────────────────────────────────────
+      document.getElementById('resAvatar').textContent = name.charAt(0).toUpperCase();
+      document.getElementById('resName').textContent   = name;
+      document.getElementById('resReg').textContent    = regNo.toUpperCase();
+      document.getElementById('resTotal').textContent  = total;
+      document.getElementById('resAvg').textContent    = avg.toFixed(2);
+      document.getElementById('resHigh').textContent   = highest;
+      document.getElementById('resLow').textContent    = lowest;
+      document.getElementById('resGrade').textContent  = grade;
+
+      const pill = document.getElementById('statusPill');
+      pill.textContent  = passed ? 'PASS' : 'FAIL';
+      pill.className    = 'status-pill ' + (passed ? 'pass' : 'fail');
+
+      const headerBar = document.getElementById('resultHeaderBar');
+      headerBar.className = 'result-header-bar ' + (passed ? 'pass-header' : 'fail-header');
+
+      // Bars
+      const barList = document.getElementById('barList');
+      barList.innerHTML = '';
+      [['Subject 1', m1], ['Subject 2', m2], ['Subject 3', m3]].forEach(function([label, val]) {
+        const row = document.createElement('div');
+        row.className = 'bar-row';
+        row.innerHTML =
+          '<span class="bar-label">' + label + '</span>' +
+          '<div class="bar-track"><div class="bar-fill ' + (val >= 35 ? 'bar-pass' : 'bar-fail') +
+          '" style="width:' + val + '%"></div></div>' +
+          '<span class="bar-val">' + val + '</span>';
+        barList.appendChild(row);
+      });
+
+      // Switch view
+      formView.style.display   = 'none';
+      resultView.style.display = 'block';
+      window.scrollTo(0, 0);
+    });
+
+    // ── Reset ─────────────────────────────────────────────────────────────────
+    resetBtn.addEventListener('click', function () {
+      ['studentName','regNumber','marks1','marks2','marks3'].forEach(function(id) {
+        document.getElementById(id).value = '';
+      });
+      msgEl.textContent = '';
+      msgEl.className   = 'validation-msg';
+    });
+
+    // ── Back ──────────────────────────────────────────────────────────────────
+    backBtn.addEventListener('click', function () {
+      resultView.style.display = 'none';
+      formView.style.display   = 'block';
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
