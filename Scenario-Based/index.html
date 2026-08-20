@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saveetha School of Engineering | Horizon '26 Event Registration Portal</title>
+  <meta name="description" content="Official event registration portal for Saveetha School of Engineering (SSE) technical, cultural, sports, and placement events." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <!-- External Stylesheet (Mandatory CSS Requirement 1.3) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Internal Stylesheet (Mandatory CSS Requirement 1.2 - Internal CSS for Identified Section) -->
+  <style id="internal-css-demo">
+    /* Internal CSS Block: Special Section Styling for Keynote Speakers Section */
+    .speakers-section {
+      background: linear-gradient(180deg, hsla(224, 28%, 7%, 0.95), hsla(224, 20%, 12%, 0.85));
+      border-top: 1px solid rgba(99, 102, 241, 0.25);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.25);
+      position: relative;
+    }
+    .speakers-section .sub-heading {
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Sticky Navigation Bar (Positioning Beyond Normal Flow: Sticky) -->
+  <header id="main-header" class="site-header">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" id="university-brand">
+        <div class="logo-badge">SSE</div>
+        <div class="logo-text">
+          <span class="univ-name">SAVEETHA SCHOOL OF ENGINEERING</span>
+          <span class="portal-sub">EVENTS PORTAL</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links (Child & Descendant Selectors target these) -->
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about-fest" class="nav-link">About Fest</a></li>
+          <li><a href="#catalogue" class="nav-link">Events Catalogue</a></li>
+          <li><a href="#speakers" class="nav-link">Speakers</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#contact-footer" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-glow-sm" onclick="openRegisterModal()">Quick Register</button>
+        <button class="hamburger-toggle" id="hamburger-btn" aria-label="Toggle Navigation Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. Hero Section (100vh, Aurora WebGL Background, Animations, CTAs) -->
+    <section id="hero" class="hero-section">
+      <!-- WebGL Canvas for Aurora Shader Hero Background -->
+      <canvas id="aurora-canvas"></canvas>
+      <div class="hero-glow-bg"></div>
+
+      <div class="container hero-content">
+        <div class="hero-pill-badge">
+          <span class="icon">✨</span>
+          <span>SAVEETHA SCHOOL OF ENGINEERING - ANNUAL SYMPOSIUM 2026</span>
+        </div>
+
+        <h1 class="hero-title">
+          Unleash Innovation &amp; Creativity at <br />
+          <!-- Inline CSS Demonstration (Mandatory Requirement 1.1) -->
+          <span class="gradient-text" style="color: #818cf8; text-decoration: underline cubic-bezier(0.4, 0, 0.2, 1) 3px;">HORIZON '26</span>
+        </h1>
+
+        <p class="hero-description">
+          Join over 5,000+ students from 120+ colleges across India for 6 days of intensive hackathons,
+          cultural battles, placement masterclasses, and esports championships at Saveetha School of Engineering.
+        </p>
+
+        <div class="hero-dates-card">
+          <div class="date-item">
+            <span class="d-label">EVENT DATES</span>
+            <span class="d-val">NOV 20 – 25, 2026</span>
+          </div>
+          <div class="divider"></div>
+          <div class="date-item">
+            <span class="d-label">MAIN VENUE</span>
+            <span class="d-val">SSE AUDITORIUM &amp; TECH LABS</span>
+          </div>
+          <div class="divider"></div>
+          <div class="date-item">
+            <span class="d-label">PRIZE POOL</span>
+            <span class="d-val">₹ 5,00,000 INR</span>
+          </div>
+        </div>
+
+        <div class="hero-cta-group">
+          <button class="btn-primary-lg" id="cta-register" onclick="openRegisterModal()">
+            <span>Register for Events</span>
+            <span class="arrow">→</span>
+          </button>
+          <a href="#catalogue" class="btn-secondary-lg" id="cta-explore">
+            <span>Explore Catalogue</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Fest Overview & Highlights Section -->
+    <section id="about-fest" class="about-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-heading">WHY ATTEND SSE HORIZON '26</span>
+          <h2 class="main-heading">Empowering Students Through Experiential Learning</h2>
+          <p class="section-lead">Saveetha School of Engineering brings together industry visionaries, creative performers, and top recruiters under one roof.</p>
+        </div>
+
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <div class="h-icon">🚀</div>
+            <h3>National Level Hackathons</h3>
+            <p>24-hour non-stop coding sprint with mentorship from Google &amp; Microsoft engineers.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="h-icon">🎭</div>
+            <h3>Cultural Extravaganza</h3>
+            <p>Battle of the Bands, Pro-Nite concerts, Street Play, and Fashion Runway competition.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="h-icon">💼</div>
+            <h3>Placement Bootcamps</h3>
+            <p>Mock technical interviews, resume teardowns, and direct interaction with 40+ hiring partners.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="h-icon">🏆</div>
+            <h3>Inter-College Esports</h3>
+            <p>High-octane VALORANT, BGMI, and FIFA tournaments with official trophies and cash awards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Event Catalogue Section (CSS Grid, Box Model Demonstration, Unsplash Images) -->
+    <section id="catalogue" class="catalogue-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-heading">EXPLORE CATEGORIES</span>
+          <h2 class="main-heading">Featured Event Catalogue</h2>
+          <p class="section-lead">Filter by domain and secure your spot in your favorite SSE events.</p>
+        </div>
+
+        <!-- Filter Controls (Attribute Selectors & Pseudo-classes) -->
+        <div class="filter-bar" id="category-filters">
+          <button class="filter-btn active" data-category="all">All Events (6)</button>
+          <button class="filter-btn" data-category="technical">Technical</button>
+          <button class="filter-btn" data-category="cultural">Cultural</button>
+          <button class="filter-btn" data-category="placement">Placement</button>
+          <button class="filter-btn" data-category="sports">Sports</button>
+        </div>
+
+        <!-- Event Cards Container (Grid Layout) -->
+        <div class="events-grid" id="events-container">
+          
+          <!-- Event Card 1 (Technical - Hackathon) -->
+          <article class="event-card" data-category="technical" id="event-card-1">
+            <div class="card-badge-wrap">
+              <span class="status-badge open">REGISTERING OPEN</span>
+            </div>
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Hackathon AI Coding" class="card-img" />
+              <span class="card-category-tag">TECHNICAL</span>
+              <span class="card-icon">💻</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">HackSSE 2026: 24Hr AI Sprint</h3>
+              <div class="card-meta">
+                <span>📅 Nov 21, 09:00 AM</span>
+                <span>📍 SSE Computer Center Lab 3</span>
+              </div>
+              <p class="card-desc">
+                Build real-world AI and Web3 solutions in 24 hours. Free cloud credits, food, swag kits, and cash prizes worth ₹1.5 Lakhs provided.
+              </p>
+              <div class="card-footer">
+                <span class="fee">Fee: FREE</span>
+                <button class="btn-card-reg" onclick="openRegisterModal('HackSSE 2026: 24Hr AI Sprint')">Register Now</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event Card 2 (Cultural - Concert/Music) -->
+          <article class="event-card" data-category="cultural" id="event-card-2">
+            <div class="card-badge-wrap">
+              <span class="status-badge open">LIMITED SEATS</span>
+            </div>
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Battle of Bands Concert" class="card-img" />
+              <span class="card-category-tag">CULTURAL</span>
+              <span class="card-icon">🎵</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Symphony '26: Battle of Bands</h3>
+              <div class="card-meta">
+                <span>📅 Nov 22, 05:00 PM</span>
+                <span>📍 SSE Open Air Theatre</span>
+              </div>
+              <p class="card-desc">
+                College rock &amp; acoustic bands perform live on stage. Judged by renowned music producers with recording contract opportunities.
+              </p>
+              <div class="card-footer">
+                <span class="fee">Fee: ₹150 / Team</span>
+                <button class="btn-card-reg" onclick="openRegisterModal('Symphony 26: Battle of Bands')">Register Now</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event Card 3 (Placement - Workshop) -->
+          <article class="event-card" data-category="placement" id="event-card-3">
+            <div class="card-badge-wrap">
+              <span class="status-badge open">MUST ATTEND</span>
+            </div>
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80" alt="Placement Masterclass Speaker" class="card-img" />
+              <span class="card-category-tag">PLACEMENT</span>
+              <span class="card-icon">🎯</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Top Tier Placement Masterclass</h3>
+              <div class="card-meta">
+                <span>📅 Nov 23, 10:00 AM</span>
+                <span>📍 SSE Seminar Hall A</span>
+              </div>
+              <p class="card-desc">
+                Crack Product Manager &amp; SDE interviews at MAANG. Covers System Design, DSA strategies, resume optimization, and mock HR rounds.
+              </p>
+              <div class="card-footer">
+                <span class="fee">Fee: FREE</span>
+                <button class="btn-card-reg" onclick="openRegisterModal('Top Tier Placement Masterclass')">Register Now</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event Card 4 (Sports - Championship) -->
+          <article class="event-card" data-category="sports" id="event-card-4">
+            <div class="card-badge-wrap">
+              <span class="status-badge filling">FAST FILLING</span>
+            </div>
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80" alt="Futsal Championship" class="card-img" />
+              <span class="card-category-tag">SPORTS</span>
+              <span class="card-icon">⚽</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">SSE Champions League (Futsal)</h3>
+              <div class="card-meta">
+                <span>📅 Nov 24, 08:00 AM</span>
+                <span>📍 SSE Sports Complex</span>
+              </div>
+              <p class="card-desc">
+                5v5 inter-departmental outdoor futsal tournament. Trophy, medals, certificates, and merchandise for winners and runners-up.
+              </p>
+              <div class="card-footer">
+                <span class="fee">Fee: ₹200 / Team</span>
+                <button class="btn-card-reg" onclick="openRegisterModal('SSE Champions League (Futsal)')">Register Now</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event Card 5 (Technical - Web Dev Workshop) -->
+          <article class="event-card" data-category="technical" id="event-card-5">
+            <div class="card-badge-wrap">
+              <span class="status-badge open">WORKSHOP</span>
+            </div>
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Web Dev Bootcamp" class="card-img" />
+              <span class="card-category-tag">TECHNICAL</span>
+              <span class="card-icon">🌐</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Modern Full-Stack Web Dev Lab</h3>
+              <div class="card-meta">
+                <span>📅 Nov 24, 02:00 PM</span>
+                <span>📍 SSE Software Lab 1</span>
+              </div>
+              <p class="card-desc">
+                Hands-on bootcamp on React 19, Tailwind, and Node.js backend integration. Complete code files and course completion certificates.
+              </p>
+              <div class="card-footer">
+                <span class="fee">Fee: FREE</span>
+                <button class="btn-card-reg" onclick="openRegisterModal('Modern Full-Stack Web Dev Lab')">Register Now</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event Card 6 (Cultural - Fashion Show) -->
+          <article class="event-card" data-category="cultural" id="event-card-6">
+            <div class="card-badge-wrap">
+              <span class="status-badge filling">POPULAR</span>
+            </div>
+            <div class="card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Eco Fashion Runway" class="card-img" />
+              <span class="card-category-tag">CULTURAL</span>
+              <span class="card-icon">✨</span>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Vogue '26: Eco-Ethic Fashion Show</h3>
+              <div class="card-meta">
+                <span>📅 Nov 25, 06:00 PM</span>
+                <span>📍 SSE Indoor Auditorium</span>
+              </div>
+              <p class="card-desc">
+                Sustainable and eco-friendly designer clothing runway walk. Showcase your team's creativity and win the coveted Style Trophy.
+              </p>
+              <div class="card-footer">
+                <span class="fee">Fee: ₹300 / Group</span>
+                <button class="btn-card-reg" onclick="openRegisterModal('Vogue 26: Eco-Ethic Fashion Show')">Register Now</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Keynote Speakers Section -->
+    <section id="speakers" class="speakers-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-heading">INDUSTRY LUMINARIES</span>
+          <h2 class="main-heading">Keynote Speakers &amp; Mentors</h2>
+          <p class="section-lead">Learn directly from global engineering leaders, startup founders, and creative directors.</p>
+        </div>
+
+        <div class="speakers-grid">
+          <div class="speaker-card">
+            <div class="speaker-img-wrap">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Dr. Ananya Roy" class="speaker-img" />
+            </div>
+            <h3>Dr. Ananya Roy</h3>
+            <span class="speaker-title">Lead AI Researcher, Google DeepMind</span>
+            <p class="speaker-bio">Keynote speaker for HackSSE 24Hr AI Sprint, sharing insights on Generative Multimodal AI models.</p>
+          </div>
+
+          <div class="speaker-card">
+            <div class="speaker-img-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Vikramaditya Verma" class="speaker-img" />
+            </div>
+            <h3>Vikramaditya Verma</h3>
+            <span class="speaker-title">VP of Engineering, Razorpay</span>
+            <p class="speaker-bio">Conducting Top-Tier Placement Masterclass on Distributed Systems &amp; Technical Interviews.</p>
+          </div>
+
+          <div class="speaker-card">
+            <div class="speaker-img-wrap">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Kavya Sundaram" class="speaker-img" />
+            </div>
+            <h3>Kavya Sundaram</h3>
+            <span class="speaker-title">Principal UX Director, Microsoft</span>
+            <p class="speaker-bio">Mentor for Modern Web Dev Lab, focusing on accessible design systems and frontend architecture.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Glimpses & Gallery Section -->
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-heading">MEMORY LANE</span>
+          <h2 class="main-heading">Horizon Fest Glimpses</h2>
+          <p class="section-lead">A visual journey through past editions of Saveetha School of Engineering's annual symposium.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item item-large">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt="Stage Lighting Concert" class="gallery-img" />
+            <div class="gallery-overlay"><span>Pro-Nite Live Performance</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="Students Coding" class="gallery-img" />
+            <div class="gallery-overlay"><span>24-Hour Hackathon Room</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80" alt="Award Ceremony" class="gallery-img" />
+            <div class="gallery-overlay"><span>Grand Valedictory Ceremony</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=600&q=80" alt="Outdoor Sports" class="gallery-img" />
+            <div class="gallery-overlay"><span>Inter-College Sports League</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="sub-heading">NEED CLARIFICATION?</span>
+          <h2 class="main-heading">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-question">Who is eligible to participate in SSE Horizon '26?</summary>
+            <div class="faq-answer"><p>Students currently enrolled in any recognized engineering, arts, science, or management college across India are eligible.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Will hostel accommodation be provided for outstation participants?</summary>
+            <div class="faq-answer"><p>Yes, hostel accommodation and dining facilities are available on-campus upon prior request in the registration modal.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Is there on-spot registration available?</summary>
+            <div class="faq-answer"><p>Online registration is strongly recommended as seats for high-demand events like HackSSE and Masterclasses are limited.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. Registration Form FLOATING MODAL OVERLAY (Positioning: Fixed Z-Index 1000) -->
+  <div class="modal-backdrop" id="registration-modal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeRegisterModal()" aria-label="Close Registration Modal">✖</button>
+      
+      <div class="form-header">
+        <span class="form-badge">ONLINE TICKET STATION</span>
+        <h2>Student Event Registration</h2>
+        <p>Complete your details to generate your digital event pass instantly.</p>
+      </div>
+
+      <form id="registration-form" class="event-form" novalidate>
+        <div class="form-grid">
+          
+          <!-- Student Name Input -->
+          <div class="form-group">
+            <label for="student-name">Full Name <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <input type="text" id="student-name" name="studentName" placeholder="e.g. Akash K" required autocomplete="name" />
+              <span class="input-icon">👤</span>
+            </div>
+            <span class="error-text" id="name-error">Please enter your full name.</span>
+          </div>
+
+          <!-- Register Number Input -->
+          <div class="form-group">
+            <label for="register-no">Register Number <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <input type="text" id="register-no" name="registerNo" placeholder="e.g. 718122CS001" required pattern="[A-Za-z0-9]{8,14}" />
+              <span class="input-icon">🆔</span>
+            </div>
+            <span class="error-text" id="regno-error">Enter valid register number (8-14 alphanumeric chars).</span>
+          </div>
+
+          <!-- Department Dropdown -->
+          <div class="form-group">
+            <label for="department">Department <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <select id="department" name="department" required>
+                <option value="" disabled selected>-- Select Department --</option>
+                <option value="CSE">Computer Science &amp; Engineering (CSE)</option>
+                <option value="IT">Information Technology (IT)</option>
+                <option value="ECE">Electronics &amp; Communication (ECE)</option>
+                <option value="EEE">Electrical &amp; Electronics (EEE)</option>
+                <option value="MECH">Mechanical Engineering (MECH)</option>
+                <option value="CIVIL">Civil Engineering (CIVIL)</option>
+              </select>
+              <span class="input-icon">🎓</span>
+            </div>
+            <span class="error-text" id="dept-error">Please select your department.</span>
+          </div>
+
+          <!-- Email Input -->
+          <div class="form-group">
+            <label for="student-email">Email Address <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <input type="email" id="student-email" name="studentEmail" placeholder="student@saveetha.com" required autocomplete="email" />
+              <span class="input-icon">✉️</span>
+            </div>
+            <span class="error-text" id="email-error">Enter a valid institutional email address.</span>
+          </div>
+
+          <!-- Event Selection Dropdown -->
+          <div class="form-group full-width">
+            <label for="event-select">Select Primary Event <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <select id="event-select" name="eventSelect" required>
+                <option value="" disabled selected>-- Select Event to Register --</option>
+                <option value="HackSSE 2026: 24Hr AI Sprint">HackSSE 2026: 24Hr AI Sprint (Technical)</option>
+                <option value="Symphony 26: Battle of Bands">Symphony '26: Battle of Bands (Cultural)</option>
+                <option value="Top Tier Placement Masterclass">Top Tier Placement Masterclass (Placement)</option>
+                <option value="SSE Champions League (Futsal)">SSE Champions League Futsal (Sports)</option>
+                <option value="Modern Full-Stack Web Dev Lab">Modern Full-Stack Web Dev Lab (Technical)</option>
+                <option value="Vogue 26: Eco-Ethic Fashion Show">Vogue '26: Eco-Ethic Fashion Show (Cultural)</option>
+              </select>
+              <span class="input-icon">🎟️</span>
+            </div>
+            <span class="error-text" id="event-error">Please choose an event.</span>
+          </div>
+
+          <!-- Accommodation Checkbox -->
+          <div class="form-group full-width checkbox-group">
+            <label class="custom-checkbox-label">
+              <input type="checkbox" id="accommodation" name="accommodation" />
+              <span class="checkmark"></span>
+              <span>Require Hostel Accommodation during event days (Optional)</span>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="form-footer">
+          <button type="submit" class="btn-submit" id="btn-submit-form">
+            <span>Complete Registration &amp; Get Pass</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Registration Success Ticket Card (Inside Modal) -->
+      <div class="success-message-card" id="success-card">
+        <div class="success-icon-wrap">✅</div>
+        <h3>Registration Confirmed!</h3>
+        <p id="success-details-text">Thank you! Your official event pass for SSE Horizon '26 has been issued.</p>
+        <div class="ticket-stub" id="ticket-stub">
+          <div class="ticket-line"><span>Name:</span> <strong id="t-name">--</strong></div>
+          <div class="ticket-line"><span>Reg No:</span> <strong id="t-regno">--</strong></div>
+          <div class="ticket-line"><span>Event:</span> <strong id="t-event">--</strong></div>
+          <div class="ticket-line"><span>Ticket Status:</span> <span class="badge-confirmed">CONFIRMED</span></div>
+        </div>
+        <button class="btn-secondary-lg" onclick="resetRegistrationForm()">Register Another Student</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 9. Footer Section (Links, Social, Copyright) -->
+  <footer id="contact-footer" class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <div class="brand-logo">
+          <div class="logo-badge">SSE</div>
+          <span class="univ-name">SAVEETHA SCHOOL OF ENGINEERING</span>
+        </div>
+        <p class="footer-desc">
+          Empowering the next generation of engineers, artists, and leaders through world-class events and practical training.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about-fest">About Symposium</a></li>
+          <li><a href="#catalogue">Events Catalogue</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Event Categories</h4>
+        <ul class="footer-links">
+          <li><a href="#catalogue">Technical Hackathons</a></li>
+          <li><a href="#catalogue">Cultural Pro-Nite</a></li>
+          <li><a href="#catalogue">Placement Masterclasses</a></li>
+          <li><a href="#catalogue">Inter-College Sports</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Event Cell</h4>
+        <p class="contact-info">📍 Saveetha School of Engineering, Saveetha Nagar, Thandalam, Chennai - 602105</p>
+        <p class="contact-info">📞 +91 44 2681 1599</p>
+        <p class="contact-info">✉️ events@saveetha.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container bottom-flex">
+        <p>© 2026 Saveetha School of Engineering (SSE). All rights reserved. Department of Web Technology (ITA02).</p>
+        <div class="social-links">
+          <a href="#" aria-label="Github">💻</a>
+          <a href="#" aria-label="LinkedIn">🔗</a>
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 10. Fixed Help Floating Widget (Positioning Beyond Normal Flow: Fixed) -->
+  <div class="fixed-help-widget" id="fixed-support">
+    <button class="help-btn" id="help-trigger" aria-label="Event Help Desk">
+      <span class="help-icon">💬</span>
+      <span class="help-text">Need Help?</span>
+    </button>
+  </div>
+
+  <!-- JavaScript for Aurora WebGL Shader Background, Modal, Filter & Validation -->
+  <script>
+    // ===== Registration Modal Controls =====
+    const modalBackdrop = document.getElementById('registration-modal');
+    const eventSelectEl = document.getElementById('event-select');
+
+    function openRegisterModal(eventName) {
+      if (modalBackdrop) {
+        modalBackdrop.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Lock background scroll
+        if (eventName && eventSelectEl) {
+          eventSelectEl.value = eventName;
+        }
+      }
+    }
+
+    function closeRegisterModal() {
+      if (modalBackdrop) {
+        modalBackdrop.classList.remove('active');
+        document.body.style.overflow = ''; // Unlock scroll
+      }
+    }
+
+    // Close modal when clicking outside modal-card
+    window.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) {
+        closeRegisterModal();
+      }
+    });
+
+    // ESC key to close modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) {
+        closeRegisterModal();
+      }
+    });
+
+    // ===== Aurora WebGL 2 Shader Implementation =====
+    (function initAuroraWebGL() {
+      const canvas = document.getElementById('aurora-canvas');
+      if (!canvas) return;
+
+      const gl = canvas.getContext('webgl2', { alpha: true, antialias: true, premultipliedAlpha: true });
+      if (!gl) {
+        console.warn('WebGL2 not available; falling back to CSS hero gradient.');
+        return;
+      }
+
+      const VERT = `#version 300 es
+      in vec2 position;
+      void main() {
+        gl_Position = vec4(position, 0.0, 1.0);
+      }`;
+
+      const FRAG = `#version 300 es
+      precision highp float;
+
+      uniform float uTime;
+      uniform float uAmplitude;
+      uniform vec3 uColorStops[3];
+      uniform vec2 uResolution;
+      uniform float uBlend;
+
+      out vec4 fragColor;
+
+      vec3 permute(vec3 x) {
+        return mod(((x * 34.0) + 1.0) * x, 289.0);
+      }
+
+      float snoise(vec2 v){
+        const vec4 C = vec4(
+            0.211324865405187, 0.366025403784439,
+            -0.577350269189626, 0.024390243902439
+        );
+        vec2 i  = floor(v + dot(v, C.yy));
+        vec2 x0 = v - i + dot(i, C.xx);
+        vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+        vec4 x12 = x0.xyxy + C.xxzz;
+        x12.xy -= i1;
+        i = mod(i, 289.0);
+
+        vec3 p = permute(
+            permute(i.y + vec3(0.0, i1.y, 1.0))
+          + i.x + vec3(0.0, i1.x, 1.0)
+        );
+
+        vec3 m = max(
+            0.5 - vec3(
+                dot(x0, x0),
+                dot(x12.xy, x12.xy),
+                dot(x12.zw, x12.zw)
+            ), 
+            0.0
+        );
+        m = m * m;
+        m = m * m;
+
+        vec3 x = 2.0 * fract(p * C.www) - 1.0;
+        vec3 h = abs(x) - 0.5;
+        vec3 ox = floor(x + 0.5);
+        vec3 a0 = x - ox;
+        m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+
+        vec3 g;
+        g.x  = a0.x  * x0.x  + h.x  * x0.y;
+        g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+        return 130.0 * dot(m, g);
+      }
+
+      struct ColorStop {
+        vec3 color;
+        float position;
+      };
+
+      #define COLOR_RAMP(colors, factor, finalColor) {              \
+        int index = 0;                                            \
+        for (int i = 0; i < 2; i++) {                               \
+           ColorStop currentColor = colors[i];                    \
+           bool isInBetween = currentColor.position <= factor;    \
+           index = int(mix(float(index), float(i), float(isInBetween))); \
+        }                                                         \
+        ColorStop currentColor = colors[index];                   \
+        ColorStop nextColor = colors[index + 1];                  \
+        float range = nextColor.position - currentColor.position; \
+        float lerpFactor = (factor - currentColor.position) / range; \
+        finalColor = mix(currentColor.color, nextColor.color, lerpFactor); \
+      }
+
+      void main() {
+        vec2 uv = gl_FragCoord.xy / uResolution;
+        
+        ColorStop colors[3];
+        colors[0] = ColorStop(uColorStops[0], 0.0);
+        colors[1] = ColorStop(uColorStops[1], 0.5);
+        colors[2] = ColorStop(uColorStops[2], 1.0);
+        
+        vec3 rampColor;
+        COLOR_RAMP(colors, uv.x, rampColor);
+        
+        float height = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uTime * 0.25)) * 0.5 * uAmplitude;
+        height = exp(height);
+        height = (uv.y * 2.0 - height + 0.2);
+        float intensity = 0.6 * height;
+        
+        float midPoint = 0.20;
+        float uBlend = 0.5;
+        float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
+        
+        vec3 auroraColor = intensity * rampColor;
+        
+        fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
+      }`;
+
+      function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.error(gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      }
+
+      const vertShader = createShader(gl, gl.VERTEX_SHADER, VERT);
+      const fragShader = createShader(gl, gl.FRAGMENT_SHADER, FRAG);
+      const program = gl.createProgram();
+      gl.attachShader(program, vertShader);
+      gl.attachShader(program, fragShader);
+      gl.linkProgram(program);
+
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error(gl.getProgramInfoLog(program));
+        return;
+      }
+
+      // Full screen Triangle Buffer
+      const positionBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        -1, -1,
+         3, -1,
+        -1,  3
+      ]), gl.STATIC_DRAW);
+
+      const posLoc = gl.getAttribLocation(program, 'position');
+      const vao = gl.createVertexArray();
+      gl.bindVertexArray(vao);
+      gl.enableVertexAttribArray(posLoc);
+      gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+      // Uniform Locations
+      const uTimeLoc = gl.getUniformLocation(program, 'uTime');
+      const uAmplitudeLoc = gl.getUniformLocation(program, 'uAmplitude');
+      const uColorStopsLoc = gl.getUniformLocation(program, 'uColorStops');
+      const uResolutionLoc = gl.getUniformLocation(program, 'uResolution');
+      const uBlendLoc = gl.getUniformLocation(program, 'uBlend');
+
+      // RGB converted color stops: '#5227FF', '#7cff67', '#5227FF'
+      const colorStopsData = new Float32Array([
+        0.3215, 0.1529, 1.0,   // #5227FF
+        0.4862, 1.0,    0.4039, // #7cff67
+        0.3215, 0.1529, 1.0    // #5227FF
+      ]);
+
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+      function resize() {
+        const heroEl = document.getElementById('hero');
+        if (!heroEl) return;
+        const width = heroEl.offsetWidth;
+        const height = heroEl.offsetHeight;
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, width, height);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      let startTime = performance.now();
+      function render(now) {
+        const elapsed = (now - startTime) * 0.001;
+        gl.useProgram(program);
+        gl.bindVertexArray(vao);
+
+        gl.uniform1f(uTimeLoc, elapsed * 0.1);
+        gl.uniform1f(uAmplitudeLoc, 1.0);
+        gl.uniform1f(uBlendLoc, 0.5);
+        gl.uniform3fv(uColorStopsLoc, colorStopsData);
+        gl.uniform2f(uResolutionLoc, canvas.width, canvas.height);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+
+    // Category Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const eventCards = document.querySelectorAll('.event-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.getAttribute('data-category');
+
+        eventCards.forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+            card.style.display = 'flex';
+            card.style.animation = 'cardFadeIn 0.4s ease forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Form Validation & Ticket Generation Inside Modal
+    const regForm = document.getElementById('registration-form');
+    const successCard = document.getElementById('success-card');
+
+    regForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      const name = document.getElementById('student-name');
+      const regno = document.getElementById('register-no');
+      const dept = document.getElementById('department');
+      const email = document.getElementById('student-email');
+      const evSelect = document.getElementById('event-select');
+
+      // Validation checks
+      if (!name.value.trim()) { showError(name, 'name-error'); isValid = false; } else hideError(name, 'name-error');
+      if (!regno.value.trim() || regno.value.trim().length < 8) { showError(regno, 'regno-error'); isValid = false; } else hideError(regno, 'regno-error');
+      if (!dept.value) { showError(dept, 'dept-error'); isValid = false; } else hideError(dept, 'dept-error');
+      if (!email.value.trim() || !email.value.includes('@')) { showError(email, 'email-error'); isValid = false; } else hideError(email, 'email-error');
+      if (!evSelect.value) { showError(evSelect, 'event-error'); isValid = false; } else hideError(evSelect, 'event-error');
+
+      if (isValid) {
+        document.getElementById('t-name').textContent = name.value.trim();
+        document.getElementById('t-regno').textContent = regno.value.trim();
+        document.getElementById('t-event').textContent = evSelect.value;
+
+        regForm.style.display = 'none';
+        successCard.style.display = 'block';
+      }
+    });
+
+    function showError(el, errId) {
+      el.classList.add('invalid');
+      document.getElementById(errId).style.display = 'block';
+    }
+
+    function hideError(el, errId) {
+      el.classList.remove('invalid');
+      document.getElementById(errId).style.display = 'none';
+    }
+
+    function resetRegistrationForm() {
+      regForm.reset();
+      regForm.style.display = 'block';
+      successCard.style.display = 'none';
+    }
+
+    // Mobile Hamburger Navigation Drawer
+    const hamburger = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+
+    // Support widget alert
+    document.getElementById('help-trigger').addEventListener('click', () => {
+      alert("Saveetha School of Engineering Event Desk: Call +91 44 2681 1599 or visit SSE Admin Block.");
+    });
+  </script>
+</body>
+</html>
